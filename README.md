@@ -1,59 +1,48 @@
-# psychology-game
+# psychology-game · Jom Philosophy!
 
-## Jom Philosophy!
+Canonical source for Teacher Reen’s FSPU0012 revision game.
+Hosted app: https://jom-philosophy-reen.izreenaisya.chatgpt.site
 
-This repository is the working home for Teacher Reen's FSPU0012 classroom game. Continue development from this repository.
+## Play live
 
-Current app: https://jom-philosophy-reen.izreenaisya.chatgpt.site
+1. Lecturer: open **Host live**, sign in with ChatGPT, choose 10/15/20 questions and a 30/45/60/75-second timer, then create a session.
+2. Project the lobby. Up to 60 students open **Join game**, enter its six-digit PIN and choose a display name. The host can copy the direct join link.
+3. Start once everyone has joined. All phones receive the same question. A tap submits and locks the answer. The server enforces the question, deadline and one answer per player.
+4. **Reveal & discuss** shows the answer, response distribution and leaderboard. Invite oral explanations, then open the next question. Correct choice = 1,000 points; an optional speed bonus adds up to 200.
+5. Download all choices and scores as CSV. **My sessions** retains the lecturer’s latest 30 sessions and their records.
 
-Teacher-led classroom game and browser-local individual revision for FSPU0012.
+Synchronization uses HTTP polling every two seconds. A server deadline closes answers even if a phone’s timer is inaccurate. Allow a reliable internet connection and short delivery delays. Joining closes at start; players can resume in the same browser using their saved token. Session join/play links expire after eight hours; owner results remain available.
 
-## Modes
+Student display names and scores appear on the shared game screen. Full answer records and controls require the owning lecturer’s ChatGPT identity on the server. Anonymous players authenticate submissions with random tokens stored in their browser; only token hashes are stored in D1. Names are unique per session. Results live in D1, never in the GitHub repository. This is formative revision, not a secure exam: the original revision question bank is available in client source. Oral explanations are discussed by the lecturer and are not collected or AI-graded by the live game.
 
-- Classroom Arena: one projected/shared screen, 2–8 teams, 13 challenges in four rounds. The host records votes, reveals explanations and awards oral-reasoning/rubric points. No phone-to-host voting, join PIN or remote scoreboard.
-- Solo Quest: 10 randomly selected questions from a 90-question bank, a written reason before feedback, personal review, missed-question retry and text export. MCQ choices are automatically marked; explanations are self-assessed.
-- Class plan: a 60-minute plan, print view, and adaptation to 110 minutes.
-- Revision kit: the three original student practice PDFs.
+Site audience is a separate hosting setting. If owner-private, students cannot access the join page. The PIN flow is ready for anonymous students when the owner enables public link access; lecturer controls remain protected.
 
-Scores and progress use localStorage in the current browser. No external AI calls, student accounts, analytics or submission endpoint. Classroom CSV export and individual text downloads happen locally.
+## Other modes
 
-The simulated AI claims are intentionally written educational examples, not live model output. This is a revision activity, not a secure examination system.
+- **Classroom Arena**: one-screen manual team game, 13 challenges; correct answers, oral-reasoning bonuses and open rubrics.
+- **Solo Quest**: 10 random questions from 90, reason before feedback, self-review, retry and text export. Progress stays in that browser.
+- **Class plan**: a printable 60-minute plan and a 110-minute adaptation.
+- **Revision kit**: three original practice papers. The actual upcoming examination and lecturer answer guide are not in this public repository.
 
-## Run locally
+## Development
 
-Requirements: Node.js 20 or newer and Python 3. There are no npm dependencies to install.
+Node >=22.13.0 and pnpm 11.25.0 (as pinned in package.json). Install dependencies with the included `install:ci` script; portable clones can use Corepack.
 
 ```bash
+corepack pnpm install --frozen-lockfile
+npm test
+npm run check
 npm run dev
 ```
 
-Open `http://localhost:8000`. The app is a buildless static site; its browser files are in `dist/`.
-
-## Checks
+Development uses Vinext on Cloudflare Workers. Generate schema changes with `npm run db:generate`, inspect the generated SQL, and commit the migration and metadata. Apply generated SQL to local D1 separately when running a preview. Hosted Sites publication applies migrations and supplies the logical `DB` binding declared in `.openai/hosting.json`.
 
 ```bash
-npm test
-npm run check
+npm run build
 ```
 
-Node tests cover question integrity, score calculation, repeat-reveal protection, rubric correction, random quest uniqueness, escaping, and classroom/solo interaction paths with a lightweight DOM harness. This is not visual browser verification.
+`public/` holds the browser app, styles, revision modules and PDFs. `app/` contains the shell, ChatGPT authentication helper and live API route. `lib/live-service.mjs` owns synchronized state and scoring. `db/schema.ts` and `drizzle/` own shared storage. `tests/` checks manual/solo interactions and multiplayer behavior with a SQLite-backed D1 adapter.
 
-Buildless static site: `dist/`. Hosting configuration: `.openai/hosting.json`.
+Tests include 30 concurrent players, late/stale/duplicate submissions, lecturer isolation, 60-player capacity, resume tokens, complete games, saved records and speed-score bounds. They do not replace visual testing on actual phones and a projector.
 
-## Continue development
-
-- `dist/app.js`: screens, classroom interaction, solo play, downloads and browser-local progress.
-- `dist/engine.mjs`: scoring, ranking, question selection and escaping.
-- `dist/deck.mjs`: the 13 classroom challenges and rubrics.
-- `dist/bank.mjs`: the 90-question solo revision bank.
-- `dist/style.css`: responsive interface and printable lesson plan.
-- `dist/assets/`: the three original student practice PDFs.
-- `tests/game.test.mjs`: scoring and interaction checks.
-
-## Next requested feature: student submissions and lecturer dashboard
-
-The current app has no shared database, student submission endpoint or lecturer dashboard. A student's solo answers are stored only in that student's browser. The classroom score table is updated by the lecturer during discussion.
-
-Future work should add a submit action, shared storage, and an authenticated lecturer view of students' answers, reasons and scores. Student answers must not be committed to this public GitHub repository or exposed in a public dashboard. GitHub stores the project code; it is not the student-results database.
-
-The existing hosted app uses Sites. GitHub commits do not automatically update that deployment. Continue code changes here and explicitly deploy a verified revision through the hosting workflow. Preserve the existing project identity in `.openai/hosting.json` when updating that Site; never place credentials in source files.
+Continue development here. GitHub pushes do not automatically publish the Site. Deploy a verified revision through Sites and preserve its project ID and access policy. Never commit credentials, student records, local databases or generated build output.

@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {deck,rounds} from '../dist/deck.mjs';
-import {bank} from '../dist/bank.mjs';
-import {scoreResponse,newClass,teamTotal,maxScore,newSolo,soloScore,rankTeams,escapeHtml,csvCell} from '../dist/engine.mjs';
+import {deck,rounds} from '../public/deck.mjs';
+import {bank} from '../public/bank.mjs';
+import {scoreResponse,newClass,teamTotal,maxScore,newSolo,soloScore,rankTeams,escapeHtml,csvCell} from '../public/engine.mjs';
 
 test('all challenge and solo questions have unambiguous scoring data',()=>{
  assert.equal(deck.length,13);assert.equal(bank.length,90);
@@ -50,7 +50,7 @@ test('classroom and solo UI actions complete their flows in a DOM harness',async
  globalThis.window={addEventListener:(name,fn)=>windowListeners[name]=fn,scrollTo(){},print(){}};
  const click=async(action,extra={})=>listeners.click({target:{closest:()=>({dataset:{action,...extra},disabled:false,setAttribute(){}})}});
  const state=()=>JSON.parse(memory.get('jom-philosophy-v1'));
- await import('../dist/app.js');
+ await import('../public/app.js');
  assert.match(element('#main').innerHTML,/Jom/);
  await click('class-start');assert.match(element('#main').innerHTML,/Quickfire/);
  for(let i=0;i<deck.length;i++){
