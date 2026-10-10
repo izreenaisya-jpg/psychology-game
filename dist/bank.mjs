@@ -1,0 +1,1172 @@
+export const bank = [
+  {
+    "id": "A1",
+    "stem": "A community trains enough engineers to maintain a safe water supply. Which obligation does this best illustrate?",
+    "options": [
+      "Fardu kifayah",
+      "A duty limited to religious teachers",
+      "A personal hobby",
+      "Fardu ain"
+    ],
+    "correct": 0,
+    "explanation": "Fardu kifayah is a collective obligation fulfilled by sufficient members serving a community need.",
+    "set": "A"
+  },
+  {
+    "id": "A2",
+    "stem": "A village wants to reduce ignorance among its young people. Which action most directly supports this aim?",
+    "options": [
+      "Discourage questions",
+      "Provide accessible education",
+      "Replace learning with entertainment",
+      "Limit access to books"
+    ],
+    "correct": 1,
+    "explanation": "Education develops knowledge and helps people move beyond ignorance.",
+    "set": "A"
+  },
+  {
+    "id": "A3",
+    "stem": "The Latin root scientia helps explain science as a form of what?",
+    "options": [
+      "Handicraft",
+      "Political authority",
+      "Knowledge",
+      "Religious ceremony"
+    ],
+    "correct": 2,
+    "explanation": "Scientia is the Latin word associated with knowledge.",
+    "set": "A"
+  },
+  {
+    "id": "A4",
+    "stem": "Which claim is suitable for a scientific investigation?",
+    "options": [
+      "A claim protected from every possible test",
+      "A claim that can be checked using observations",
+      "A claim supported only by a famous person",
+      "A claim accepted only because it is popular"
+    ],
+    "correct": 1,
+    "explanation": "Scientific claims about nature should be open to evidence and testing.",
+    "set": "A"
+  },
+  {
+    "id": "A5",
+    "stem": "A student links the Greek term techne to making a tool by hand. Which meaning is closest?",
+    "options": [
+      "A moral command",
+      "Art or craft",
+      "A scientific law",
+      "A written argument"
+    ],
+    "correct": 1,
+    "explanation": "Techne refers to art, craft or skilled handiwork.",
+    "set": "A"
+  },
+  {
+    "id": "A6",
+    "stem": "Which set contains only intellectual activities identified in scientific methodology?",
+    "options": [
+      "Observation, hypothesis, description, generalization",
+      "Observation, advertising, description, imitation",
+      "Description, guessing, sales, repetition",
+      "Hypothesis, popularity, secrecy, generalization"
+    ],
+    "correct": 0,
+    "explanation": "The course lists observation, hypotheses, descriptions and generalizations as intellectual activities.",
+    "set": "A"
+  },
+  {
+    "id": "A7",
+    "stem": "In the course account of Islamic methodology, which belongs to the non-empirical category?",
+    "options": [
+      "Measuring temperature",
+      "Inspiration and kashf",
+      "Recording observations",
+      "Performing a controlled experiment"
+    ],
+    "correct": 1,
+    "explanation": "Inspiration and kashf are classified as non-empirical in this course account, rather than as measurements.",
+    "set": "A"
+  },
+  {
+    "id": "A8",
+    "stem": "A student says, \"Learning engineering can have no religious value because it is worldly knowledge.\" What is the best correction?",
+    "options": [
+      "Every Muslim must become an engineer",
+      "Engineering replaces religious duties",
+      "Only religious teachers may learn engineering",
+      "Beneficial scientific learning can carry religious responsibility"
+    ],
+    "correct": 3,
+    "explanation": "The course rejects treating beneficial scientific knowledge as entirely separate from religious responsibility.",
+    "set": "A"
+  },
+  {
+    "id": "A9",
+    "stem": "Which trio matches the three philosophy-of-technology approaches listed in the course?",
+    "options": [
+      "Ontological, commercial, political",
+      "Epistemological, anthropological, ontological",
+      "Anthropological, sociological, commercial",
+      "Epistemological, sociological, ontological"
+    ],
+    "correct": 1,
+    "explanation": "The listed approaches are epistemological, anthropological and ontological.",
+    "set": "A"
+  },
+  {
+    "id": "A10",
+    "stem": "A technology team checks whether its methods are permissible or prohibited in Islam. Which pair guides this check?",
+    "options": [
+      "Supply and demand",
+      "Profit and loss",
+      "Halal and haram",
+      "Tradition and popularity"
+    ],
+    "correct": 2,
+    "explanation": "Halal and haram concern permissibility and prohibition in the Islamic ethical framework.",
+    "set": "A"
+  },
+  {
+    "id": "A11",
+    "stem": "Why did translating works from earlier civilizations support scientific growth?",
+    "options": [
+      "It removed the need for skilled scholars",
+      "It made existing knowledge available for further study",
+      "It proved that new research was unnecessary",
+      "It stopped cultural contact"
+    ],
+    "correct": 1,
+    "explanation": "Translation gave scholars access to earlier learning that they could study and develop.",
+    "set": "A"
+  },
+  {
+    "id": "A12",
+    "stem": "Which activity best reflects the intellectual spirit of the Islamic Golden Age?",
+    "options": [
+      "Seeking knowledge across different scholarly traditions",
+      "Restricting learning to inherited stories",
+      "Rejecting every foreign book",
+      "Preventing discussion between scholars"
+    ],
+    "correct": 0,
+    "explanation": "The source links intellectual growth to encouragement to seek knowledge widely.",
+    "set": "A"
+  },
+  {
+    "id": "A13",
+    "stem": "A display groups Hippocrates, Galen and Imhotep together. What is their shared association in this course?",
+    "options": [
+      "The invention of the internet",
+      "The translation of Arabic poetry only",
+      "Modern factory production",
+      "The history of medicine"
+    ],
+    "correct": 3,
+    "explanation": "These three figures are associated with medicine in the course overview of early civilizations.",
+    "set": "A"
+  },
+  {
+    "id": "A14",
+    "stem": "Who best fits a study card headed \"translation of earlier medical learning\"?",
+    "options": [
+      "Al-Khwarizmi",
+      "Plato",
+      "Pythagoras",
+      "Hunayn ibn Ishaq"
+    ],
+    "correct": 3,
+    "explanation": "Hunayn ibn Ishaq is the translator associated with the translation era in the source.",
+    "set": "A"
+  },
+  {
+    "id": "A15",
+    "stem": "A student writes \"Baitul Hikmah: House of Wisdom, Baghdad.\" Which part needs correction?",
+    "options": [
+      "The city only",
+      "Both the meaning and the city",
+      "The meaning only",
+      "Neither the meaning nor the city"
+    ],
+    "correct": 3,
+    "explanation": "Baitul Hikmah means House of Wisdom and is associated with Baghdad.",
+    "set": "A"
+  },
+  {
+    "id": "A16",
+    "stem": "A historian studies ancient Mesopotamian clay tablets containing prescribed remedies. What do these show?",
+    "options": [
+      "Early recording of medical knowledge",
+      "The existence of modern vaccination campaigns",
+      "The use of digital medical files",
+      "The beginning of steam-powered factories"
+    ],
+    "correct": 0,
+    "explanation": "The source identifies medication recorded on clay tablets as an early Mesopotamian medical achievement.",
+    "set": "A"
+  },
+  {
+    "id": "A17",
+    "stem": "Which pairing correctly links a scholar with a medical work?",
+    "options": [
+      "Ibn Sina - Al-Qanun fi al-Tibb",
+      "Hunayn ibn Ishaq - Al-Qanun fi al-Tibb",
+      "Pythagoras - Al-Qanun fi al-Tibb",
+      "Al-Khwarizmi - Al-Qanun fi al-Tibb"
+    ],
+    "correct": 0,
+    "explanation": "Ibn Sina authored Al-Qanun fi al-Tibb, also known as The Canon of Medicine.",
+    "set": "A"
+  },
+  {
+    "id": "A18",
+    "stem": "Which statement describes an important role of scholars such as Al-Khwarizmi in numeration?",
+    "options": [
+      "Creating numbers with no earlier influences",
+      "Replacing all mathematics with astronomy",
+      "Explaining and spreading Hindu-Arabic calculation methods",
+      "Inventing the Roman numeral system"
+    ],
+    "correct": 2,
+    "explanation": "Al-Khwarizmi wrote on Hindu-Arabic calculation; the contribution involved transmission and development.",
+    "set": "A"
+  },
+  {
+    "id": "A19",
+    "stem": "A revision card reads \"Greek mathematics and number theory.\" Which name best completes it?",
+    "options": [
+      "Imhotep",
+      "Galen",
+      "Pythagoras",
+      "Hunayn ibn Ishaq"
+    ],
+    "correct": 2,
+    "explanation": "Pythagoras is the Greek mathematician linked with numbers in the course.",
+    "set": "A"
+  },
+  {
+    "id": "A20",
+    "stem": "Which activity best fits Baghdad as a centre of learning in the course?",
+    "options": [
+      "Developing the modern internet",
+      "Starting the steam-powered factory system",
+      "Collecting manuscripts and checking translations",
+      "Ending contact with Greek and Persian knowledge"
+    ],
+    "correct": 2,
+    "explanation": "The Baghdad account emphasizes manuscripts, translation and Baitul Hikmah.",
+    "set": "A"
+  },
+  {
+    "id": "A21",
+    "stem": "A lesson links Damascus with practical advances. Which example fits?",
+    "options": [
+      "Online communication networks",
+      "Computer-controlled factories",
+      "Electronic medical records",
+      "Shipbuilding and agricultural techniques"
+    ],
+    "correct": 3,
+    "explanation": "The source associates Damascus with shipbuilding, naval tools and agricultural techniques.",
+    "set": "A"
+  },
+  {
+    "id": "A22",
+    "stem": "A researcher removes an inconvenient result before publishing a report. Which principle is most directly violated?",
+    "options": [
+      "Speed of communication",
+      "Technical skill",
+      "Scientific honesty",
+      "Freedom to choose a research topic"
+    ],
+    "correct": 2,
+    "explanation": "Scientific honesty requires truthful and accurate reporting, including inconvenient findings.",
+    "set": "A"
+  },
+  {
+    "id": "A23",
+    "stem": "In the Islamic framework taught here, beneficial scientific study can be understood as what?",
+    "options": [
+      "A substitute for every religious duty",
+      "An activity valuable only for income",
+      "An act of worship when pursued responsibly",
+      "A pursuit with no ethical obligations"
+    ],
+    "correct": 2,
+    "explanation": "The course presents responsible scientific study as capable of being worship and service to Allah.",
+    "set": "A"
+  },
+  {
+    "id": "A24",
+    "stem": "A team says, \"Our invention works, so its harmful social effects do not matter.\" Which reply best reflects value-based science?",
+    "options": [
+      "Success must also be judged against ethics and social responsibility",
+      "Social effects belong outside every research decision",
+      "Any effective invention is automatically acceptable",
+      "Only the selling price matters"
+    ],
+    "correct": 0,
+    "explanation": "Value-based science considers ethical responsibilities as well as technical results.",
+    "set": "A"
+  },
+  {
+    "id": "A25",
+    "stem": "A company uses a prohibited method to achieve a useful technological goal. How should this be assessed in the Islamic framework?",
+    "options": [
+      "A useful goal does not make an unethical method acceptable",
+      "Ethics applies only after the product is sold",
+      "The result alone determines whether the action is right",
+      "The method becomes acceptable if profits rise"
+    ],
+    "correct": 0,
+    "explanation": "The source emphasizes that Shariah ethics constrain methods as well as goals.",
+    "set": "A"
+  },
+  {
+    "id": "A26",
+    "stem": "Which response shows a scientific characteristic identified in the course?",
+    "options": [
+      "Rely only on a person's status",
+      "Use logical reasoning to examine the claim",
+      "Avoid asking for supporting evidence",
+      "Accept the claim because it is fashionable"
+    ],
+    "correct": 1,
+    "explanation": "Logic is identified as a scientific characteristic.",
+    "set": "A"
+  },
+  {
+    "id": "A27",
+    "stem": "In the criticism attributed to Richard Dawkins in the course, what is the central concern?",
+    "options": [
+      "Using mathematics to describe nature",
+      "Accepting authority or faith in place of evidence",
+      "Allowing experiments to be repeated",
+      "Collecting too many observations"
+    ],
+    "correct": 1,
+    "explanation": "This is the criticism attributed to Dawkins, rather than a statement that every religion rejects evidence.",
+    "set": "A"
+  },
+  {
+    "id": "A28",
+    "stem": "A student explains Tawhid as \"the oneness of God.\" How should this definition be marked?",
+    "options": [
+      "Correct",
+      "Incorrect: it means the authority of scientists",
+      "Incorrect: it means technological progress",
+      "Incorrect: it means separation of all knowledge"
+    ],
+    "correct": 0,
+    "explanation": "Tawhid refers to the oneness of God.",
+    "set": "A"
+  },
+  {
+    "id": "A29",
+    "stem": "Which statement best fits the Roman Catholic position summarized in this course?",
+    "options": [
+      "Science and religion must always contradict",
+      "Scientific study always requires rejecting faith",
+      "Religion makes every experiment unacceptable",
+      "Science and religion can exist in harmony"
+    ],
+    "correct": 3,
+    "explanation": "The course summary presents the possibility of harmony; it does not describe every historical episode.",
+    "set": "A"
+  },
+  {
+    "id": "A30",
+    "stem": "A scientist publishes full results and considers how an invention affects users. Which two commitments are visible?",
+    "options": [
+      "Profit and speed only",
+      "Popularity and authority",
+      "Secrecy and unlimited freedom",
+      "Scientific honesty and social responsibility"
+    ],
+    "correct": 3,
+    "explanation": "Accurate reporting shows honesty, while considering effects on users shows social responsibility.",
+    "set": "A"
+  },
+  {
+    "id": "B1",
+    "stem": "Which scholar-field pairing is accurate?",
+    "options": [
+      "Pythagoras - Arabic medical translation",
+      "Al-Khwarizmi - mathematics",
+      "Ibn Sina - steam engines",
+      "Al-Biruni - internet design"
+    ],
+    "correct": 1,
+    "explanation": "Al-Khwarizmi made major mathematical contributions, including work on algebra.",
+    "set": "B"
+  },
+  {
+    "id": "B2",
+    "stem": "A laboratory repeats an observation to check a claim. What feature of science does this demonstrate?",
+    "options": [
+      "Following popularity",
+      "Checking claims against evidence",
+      "Choosing conclusions before collecting data",
+      "Protecting claims from criticism"
+    ],
+    "correct": 1,
+    "explanation": "Observation and testing allow scientific claims to be checked.",
+    "set": "B"
+  },
+  {
+    "id": "B3",
+    "stem": "Which action most clearly shows a community meeting fardu kifayah through science?",
+    "options": [
+      "Ensuring enough people have essential medical expertise",
+      "Treating all occupations as private hobbies",
+      "Leaving every shared need unmet",
+      "Requiring every person to become a surgeon"
+    ],
+    "correct": 0,
+    "explanation": "A collective obligation requires sufficient expertise within the community, rather than identical careers for all.",
+    "set": "B"
+  },
+  {
+    "id": "B4",
+    "stem": "A book translator compares a translated passage with its original. Which scholarly role does this illustrate?",
+    "options": [
+      "Preventing cultural exchange",
+      "Checking the accuracy of translations",
+      "Replacing scientific study with guessing",
+      "Limiting all books to one reader"
+    ],
+    "correct": 1,
+    "explanation": "The source identifies authentication of translation material as a role of Baitul Hikmah.",
+    "set": "B"
+  },
+  {
+    "id": "B5",
+    "stem": "A report leaves out failed trials to make a device look reliable. What should the researcher do?",
+    "options": [
+      "Change the failed results into successes",
+      "Keep only the successful results",
+      "Report the failed trials accurately",
+      "Delete the original records"
+    ],
+    "correct": 2,
+    "explanation": "Scientific honesty requires an accurate account of the evidence, including failures.",
+    "set": "B"
+  },
+  {
+    "id": "B6",
+    "stem": "Which earlier traditions contributed to the cultural background of Islamic scientific growth?",
+    "options": [
+      "Only twentieth-century digital traditions",
+      "Only one isolated local tradition",
+      "Only modern industrial traditions",
+      "Greek, Persian, Egyptian and Sumerian traditions"
+    ],
+    "correct": 3,
+    "explanation": "The source presents growth through contact with several earlier intellectual traditions.",
+    "set": "B"
+  },
+  {
+    "id": "B7",
+    "stem": "Which statement most clearly confuses fardu kifayah with fardu ain?",
+    "options": [
+      "A community needs enough skilled engineers",
+      "Scientific expertise may benefit the public",
+      "Every Muslim must personally qualify as an engineer",
+      "Different people may serve different community needs"
+    ],
+    "correct": 2,
+    "explanation": "Fardu kifayah is collective; it does not require every Muslim to enter the same profession.",
+    "set": "B"
+  },
+  {
+    "id": "B8",
+    "stem": "A study card names Hunayn ibn Ishaq. Which description belongs beside it?",
+    "options": [
+      "Pioneer of steam-powered manufacturing",
+      "Scholar associated with the translation movement",
+      "Author of The Canon of Medicine",
+      "Greek thinker associated with number theory"
+    ],
+    "correct": 1,
+    "explanation": "Hunayn ibn Ishaq is associated with translation, while The Canon is by Ibn Sina.",
+    "set": "B"
+  },
+  {
+    "id": "B9",
+    "stem": "Why is \"Only the final result matters\" inadequate in Islamic technological ethics?",
+    "options": [
+      "Useful results never matter",
+      "Technology should never change",
+      "The methods used must also satisfy ethical requirements",
+      "Researchers should avoid all practical goals"
+    ],
+    "correct": 2,
+    "explanation": "The acceptability of a project depends on its methods as well as its aims.",
+    "set": "B"
+  },
+  {
+    "id": "B10",
+    "stem": "Which pair correctly matches the roots used in the course?",
+    "options": [
+      "Scientia - craft; techne - knowledge",
+      "Scientia - wealth; techne - religion",
+      "Scientia - authority; techne - truth",
+      "Scientia - knowledge; techne - art or craft"
+    ],
+    "correct": 3,
+    "explanation": "The Latin root concerns knowledge, while the Greek root concerns art or craft.",
+    "set": "B"
+  },
+  {
+    "id": "B11",
+    "stem": "Which question most directly reflects an epistemological approach to technology?",
+    "options": [
+      "How do we know that a technical claim is justified?",
+      "What is the cheapest shipping option?",
+      "Which advertisement has the brightest colours?",
+      "How many products were sold yesterday?"
+    ],
+    "correct": 0,
+    "explanation": "An epistemological approach examines knowledge and its justification.",
+    "set": "B"
+  },
+  {
+    "id": "B12",
+    "stem": "A library brings together scholars from different religions and backgrounds. Which role does this best support?",
+    "options": [
+      "Keeping knowledge within a single family",
+      "Ending the need for translation",
+      "Preventing the training of specialists",
+      "Exchange of knowledge across communities"
+    ],
+    "correct": 3,
+    "explanation": "The source highlights diverse translators and cultural exchange within the learning environment.",
+    "set": "B"
+  },
+  {
+    "id": "B13",
+    "stem": "A student labels a medical text \"Al-Qanun fi al-Tibb by Ibn Sina.\" What does the title identify?",
+    "options": [
+      "A manual of steam engines",
+      "A book of Roman military law",
+      "The Canon of Medicine",
+      "A guide to internet networks"
+    ],
+    "correct": 2,
+    "explanation": "Al-Qanun fi al-Tibb is Ibn Sina's Canon of Medicine.",
+    "set": "B"
+  },
+  {
+    "id": "B14",
+    "stem": "A researcher notices a pattern and proposes a possible explanation to investigate. What has the researcher formed?",
+    "options": [
+      "A sales forecast unrelated to evidence",
+      "A hypothesis",
+      "A rule that cannot be questioned",
+      "A guaranteed final truth"
+    ],
+    "correct": 1,
+    "explanation": "A hypothesis is a proposed explanation that can guide investigation.",
+    "set": "B"
+  },
+  {
+    "id": "B15",
+    "stem": "Why can scientific freedom have limits in the Islamic framework?",
+    "options": [
+      "All research questions are prohibited",
+      "Only wealthy people may investigate",
+      "Scientific reasoning has no role",
+      "Researchers have ethical and social responsibilities"
+    ],
+    "correct": 3,
+    "explanation": "The source links scientific freedom with responsibility rather than unrestricted action.",
+    "set": "B"
+  },
+  {
+    "id": "B16",
+    "stem": "Which research action is empirical?",
+    "options": [
+      "Measuring and recording water temperature",
+      "Claiming private inspiration",
+      "Describing kashf as personal insight",
+      "Accepting a claim solely through inward experience"
+    ],
+    "correct": 0,
+    "explanation": "Empirical investigation uses observable or measurable evidence.",
+    "set": "B"
+  },
+  {
+    "id": "B17",
+    "stem": "Which caption best describes Mesopotamian clay tablets containing remedies?",
+    "options": [
+      "Proof of modern vaccination programmes",
+      "Evidence of digital health records",
+      "Proof that the internet existed then",
+      "Evidence of early written medical practice"
+    ],
+    "correct": 3,
+    "explanation": "The course uses clay-tablet prescriptions as evidence of early recorded medicine.",
+    "set": "B"
+  },
+  {
+    "id": "B18",
+    "stem": "Which statement avoids a common misconception about studying science?",
+    "options": [
+      "Religious responsibility makes observation unnecessary",
+      "Science can serve both human welfare and religious responsibility",
+      "Scientific learning has no social value",
+      "Science is always separate from religion"
+    ],
+    "correct": 1,
+    "explanation": "The source connects beneficial scientific learning with human benefit and religious responsibility.",
+    "set": "B"
+  },
+  {
+    "id": "B19",
+    "stem": "A researcher asks whether a conclusion follows from its supporting reasons. Which characteristic is being used?",
+    "options": [
+      "Logic",
+      "Popularity",
+      "Blind imitation",
+      "Status"
+    ],
+    "correct": 0,
+    "explanation": "Logic concerns the relationship between reasons and conclusions.",
+    "set": "B"
+  },
+  {
+    "id": "B20",
+    "stem": "Which contribution fits Al-Biruni in the course outline?",
+    "options": [
+      "Writing The Canon of Medicine",
+      "Work in astronomy, mathematics and geographical measurement",
+      "Developing the modern internet",
+      "Inventing steam-powered factories"
+    ],
+    "correct": 1,
+    "explanation": "The source associates Al-Biruni with mathematics, astronomy and geographical measurement.",
+    "set": "B"
+  },
+  {
+    "id": "B21",
+    "stem": "Which explanation best captures why education matters in the source?",
+    "options": [
+      "It removes the need for truthful reporting",
+      "It makes ethical judgment unnecessary",
+      "It helps people overcome ignorance",
+      "It guarantees that every claim is correct"
+    ],
+    "correct": 2,
+    "explanation": "Education is presented as a central way to prevent ignorance.",
+    "set": "B"
+  },
+  {
+    "id": "B22",
+    "stem": "Which summary best describes the link between Baghdad and Baitul Hikmah?",
+    "options": [
+      "A centre designed to stop scholarly exchange",
+      "A centre established for digital automation",
+      "A centre of manuscripts, translation and scholarship",
+      "A centre devoted only to ship construction"
+    ],
+    "correct": 2,
+    "explanation": "The source links Baghdad and Baitul Hikmah with translation, manuscripts and learning.",
+    "set": "B"
+  },
+  {
+    "id": "B23",
+    "stem": "What does Tawhid contribute to the Islamic view of nature in this course?",
+    "options": [
+      "Belief that scientists have unlimited authority",
+      "Separation of science from every ethical duty",
+      "Recognition of the oneness of God",
+      "Worship of technological progress"
+    ],
+    "correct": 2,
+    "explanation": "Tawhid expresses the oneness of God within the Islamic worldview.",
+    "set": "B"
+  },
+  {
+    "id": "B24",
+    "stem": "Which statement about number systems is most accurate?",
+    "options": [
+      "Roman numerals were invented by Al-Khwarizmi",
+      "Numerals developed without any contact between cultures",
+      "Islamic scholars helped transmit and develop Hindu-Arabic calculation",
+      "Algebra means abandoning all number systems"
+    ],
+    "correct": 2,
+    "explanation": "The mathematical contribution includes transmission and development of calculation methods with Indian origins.",
+    "set": "B"
+  },
+  {
+    "id": "B25",
+    "stem": "A project is profitable but unjust to its users. Which judgment best fits Islamic technological principles?",
+    "options": [
+      "Profit does not make injustice acceptable",
+      "Profit automatically removes ethical concerns",
+      "Injustice is one of the guiding principles",
+      "User welfare is unrelated to technological decisions"
+    ],
+    "correct": 0,
+    "explanation": "Injustice is excluded from the Islamic principles listed in the source.",
+    "set": "B"
+  },
+  {
+    "id": "B26",
+    "stem": "Which phrase best describes the learning attitude encouraged in the early Islamic period?",
+    "options": [
+      "Avoid every unfamiliar idea",
+      "Replace study with social status",
+      "Reject all translated texts",
+      "Seek knowledge widely"
+    ],
+    "correct": 3,
+    "explanation": "The source identifies encouragement to seek knowledge widely as a motivation for intellectual activity.",
+    "set": "B"
+  },
+  {
+    "id": "B27",
+    "stem": "For the criticism attributed to Dawkins, which classroom response is the best illustration of the concern?",
+    "options": [
+      "\"Believe it only because an authority says so.\"",
+      "\"Can another group repeat the test?\"",
+      "\"Let us examine the evidence first.\"",
+      "\"Show the observations that support it.\""
+    ],
+    "correct": 0,
+    "explanation": "The concern is substituting authority for evidence, as presented in the course account.",
+    "set": "B"
+  },
+  {
+    "id": "B28",
+    "stem": "Which pair of practical developments is associated with Damascus in the source?",
+    "options": [
+      "Internet platforms and electronic records",
+      "Naval technology and agricultural techniques",
+      "Steam factories and computer automation",
+      "Digital computing and satellite networks"
+    ],
+    "correct": 1,
+    "explanation": "Damascus is linked with naval and agricultural technological development.",
+    "set": "B"
+  },
+  {
+    "id": "B29",
+    "stem": "A student concludes that religion and science must always be enemies. Which course example challenges that conclusion?",
+    "options": [
+      "The meaning of the word techne",
+      "The existence of scientific observations",
+      "The recording of medicine on clay tablets",
+      "The Roman Catholic position summarized as allowing harmony"
+    ],
+    "correct": 3,
+    "explanation": "The course includes a Catholic position in which faith and scientific study can be compatible.",
+    "set": "B"
+  },
+  {
+    "id": "B30",
+    "stem": "Which example connects scientific study with worship in the Islamic framework?",
+    "options": [
+      "Learning useful science with responsible intentions and conduct",
+      "Replacing every religious duty with laboratory work",
+      "Falsifying results to gain prestige",
+      "Ignoring harm because a project is impressive"
+    ],
+    "correct": 0,
+    "explanation": "The course connects scientific learning with devotion while retaining ethical obligations.",
+    "set": "B"
+  },
+  {
+    "id": "C1",
+    "stem": "A community has too few trained people to maintain a safe water system. Which concept supports training enough specialists?",
+    "options": [
+      "Fardu kifayah",
+      "Scientific freedom without responsibility",
+      "The separation of science from community life",
+      "Fardu ain for every person to become a specialist"
+    ],
+    "correct": 0,
+    "explanation": "Meeting an essential shared need through sufficient specialists illustrates a collective obligation.",
+    "set": "C"
+  },
+  {
+    "id": "C2",
+    "stem": "Which revision note is correctly matched?",
+    "options": [
+      "Techne: Latin root meaning knowledge",
+      "Scientia: Greek root meaning handiwork",
+      "Scientia: Latin root associated with knowledge",
+      "Techne: term meaning scientific dishonesty"
+    ],
+    "correct": 2,
+    "explanation": "Scientia is the Latin root of science associated with knowledge.",
+    "set": "C"
+  },
+  {
+    "id": "C3",
+    "stem": "A claim becomes popular online, but nobody provides observations or tests. What is the best scientific response?",
+    "options": [
+      "Reject the need for investigation",
+      "Ask for evidence before accepting it",
+      "Assume repetition makes it true",
+      "Treat popularity as proof"
+    ],
+    "correct": 1,
+    "explanation": "Popularity alone is not scientific evidence; claims should be checked.",
+    "set": "C"
+  },
+  {
+    "id": "C4",
+    "stem": "Which task most closely reflects the original sense of techne?",
+    "options": [
+      "Judging a claim only by its popularity",
+      "Using craft skills to make a tool",
+      "Repeating an unsupported rumour",
+      "Listing the names of rulers"
+    ],
+    "correct": 1,
+    "explanation": "Techne is associated with art, craft and skilled making.",
+    "set": "C"
+  },
+  {
+    "id": "C5",
+    "stem": "A student records what happened during an experiment in clear words. Which intellectual activity is this?",
+    "options": [
+      "Concealment",
+      "Advertising",
+      "Description",
+      "Inspiration"
+    ],
+    "correct": 2,
+    "explanation": "Description records the features or events being studied.",
+    "set": "C"
+  },
+  {
+    "id": "C6",
+    "stem": "Which pair contrasts an empirical activity with a non-empirical category in the course?",
+    "options": [
+      "Observation; experimentation",
+      "Measurement; observation",
+      "Inspiration; kashf",
+      "Measuring a sample; inspiration"
+    ],
+    "correct": 3,
+    "explanation": "Measurement is empirical; inspiration belongs to the non-empirical category in the course account.",
+    "set": "C"
+  },
+  {
+    "id": "C7",
+    "stem": "Which statement should be corrected during revision?",
+    "options": [
+      "Education can help prevent ignorance",
+      "Technology can benefit a community",
+      "Science is merely worldly knowledge with no religious significance",
+      "Scientific claims should be examined"
+    ],
+    "correct": 2,
+    "explanation": "The source identifies the complete separation of science from religious knowledge and responsibility as a misconception.",
+    "set": "C"
+  },
+  {
+    "id": "C8",
+    "stem": "Which approach is outside the three-item list of philosophy-of-technology approaches used in this course?",
+    "options": [
+      "Ontological",
+      "Epistemological",
+      "Sociological",
+      "Anthropological"
+    ],
+    "correct": 2,
+    "explanation": "The course's specific list contains epistemological, anthropological and ontological approaches.",
+    "set": "C"
+  },
+  {
+    "id": "C9",
+    "stem": "Which proposed rule conflicts with Islamic technological ethics?",
+    "options": [
+      "Permit injustice whenever it increases efficiency",
+      "Consider whether methods are halal or haram",
+      "Evaluate benefits and harmful consequences",
+      "Recognize social responsibility"
+    ],
+    "correct": 0,
+    "explanation": "Efficiency does not justify injustice within the ethical framework presented.",
+    "set": "C"
+  },
+  {
+    "id": "C10",
+    "stem": "A student moves from several observations to a broader statement about a pattern. Which activity is illustrated?",
+    "options": [
+      "Private inspiration",
+      "Advertising",
+      "Translation",
+      "Generalization"
+    ],
+    "correct": 3,
+    "explanation": "Generalization develops a broader statement from observed cases or patterns.",
+    "set": "C"
+  },
+  {
+    "id": "C11",
+    "stem": "What does the translation movement suggest about scientific development?",
+    "options": [
+      "Earlier learning must always be discarded",
+      "Knowledge can grow through contact between cultures",
+      "Translators have no intellectual role",
+      "Knowledge develops only through isolation"
+    ],
+    "correct": 1,
+    "explanation": "The source describes scientific growth drawing on knowledge from multiple civilizations.",
+    "set": "C"
+  },
+  {
+    "id": "C12",
+    "stem": "According to the course account, which pair of peoples is associated with Hajr, later known as Mada'in Salih?",
+    "options": [
+      "Greeks and Romans",
+      "Sabaeans and Himyarites",
+      "Thamud and Nabataeans",
+      "Akkadians and Assyrians"
+    ],
+    "correct": 2,
+    "explanation": "This is the historical association given in the course; it is not a claim that both left identical archaeological evidence.",
+    "set": "C"
+  },
+  {
+    "id": "C13",
+    "stem": "Which list contains three medical figures from the early-civilization overview?",
+    "options": [
+      "Al-Khwarizmi, Al-Biruni, Pythagoras",
+      "Hippocrates, Galen, Imhotep",
+      "Plato, Pythagoras, Al-Khwarizmi",
+      "Aristotle, Plato, Pythagoras"
+    ],
+    "correct": 1,
+    "explanation": "Hippocrates, Galen and Imhotep are grouped with early medicine in the source.",
+    "set": "C"
+  },
+  {
+    "id": "C14",
+    "stem": "A revision table accidentally labels Hunayn ibn Ishaq as the author of The Canon of Medicine. What correction is needed?",
+    "options": [
+      "Describe The Canon as a book on steam engines",
+      "Assign The Canon to Ibn Sina and link Hunayn to translation",
+      "Remove Hunayn from the history of scholarship",
+      "Assign The Canon to Pythagoras"
+    ],
+    "correct": 1,
+    "explanation": "Ibn Sina authored The Canon; Hunayn is associated with the translation movement.",
+    "set": "C"
+  },
+  {
+    "id": "C15",
+    "stem": "Which activity would help Baitul Hikmah support reliable scholarship?",
+    "options": [
+      "Discard manuscripts without studying them",
+      "Reward translators for changing the original meaning",
+      "Prevent scholars from consulting books",
+      "Compare translated material with its source"
+    ],
+    "correct": 3,
+    "explanation": "Checking translations against original material supports accuracy in the course account.",
+    "set": "C"
+  },
+  {
+    "id": "C16",
+    "stem": "A student must distinguish Damascus from Baghdad. Which pairing best fits the source?",
+    "options": [
+      "Damascus: internet networks; Baghdad: steam factories",
+      "Damascus: digital automation; Baghdad: online learning",
+      "Damascus: modern satellites; Baghdad: electronic banking",
+      "Damascus: shipbuilding; Baghdad: manuscript and translation activity"
+    ],
+    "correct": 3,
+    "explanation": "The course distinguishes practical developments in Damascus from major manuscript and translation activities in Baghdad.",
+    "set": "C"
+  },
+  {
+    "id": "C17",
+    "stem": "Why is a clay tablet containing a prescribed remedy relevant to the history of science?",
+    "options": [
+      "It demonstrates the invention of computers",
+      "It proves the existence of modern clinical trials",
+      "It records an early form of medical knowledge",
+      "It shows that medical knowledge never changed"
+    ],
+    "correct": 2,
+    "explanation": "The Mesopotamian example concerns early recorded remedies, rather than modern medical institutions.",
+    "set": "C"
+  },
+  {
+    "id": "C18",
+    "stem": "Which scholar is most appropriate for a project on algebra and calculation?",
+    "options": [
+      "Imhotep",
+      "Galen",
+      "Hunayn ibn Ishaq",
+      "Al-Khwarizmi"
+    ],
+    "correct": 3,
+    "explanation": "Al-Khwarizmi is strongly associated with mathematics, including algebra and calculation.",
+    "set": "C"
+  },
+  {
+    "id": "C19",
+    "stem": "Which note correctly summarizes Al-Biruni's contribution in the source?",
+    "options": [
+      "Astronomy and mathematical or geographical measurement",
+      "Invention of the Roman numeral system",
+      "Creation of the modern internet",
+      "Authorship of The Canon of Medicine"
+    ],
+    "correct": 0,
+    "explanation": "Al-Biruni is linked with astronomy, mathematics, geometry and geographical measurement.",
+    "set": "C"
+  },
+  {
+    "id": "C20",
+    "stem": "A library trains translators and makes books available for study. What wider outcome does this support?",
+    "options": [
+      "The removal of expertise from society",
+      "A culture of learning and access to knowledge",
+      "An end to all independent thought",
+      "The replacement of education by secrecy"
+    ],
+    "correct": 1,
+    "explanation": "The source emphasizes skilled translators, libraries and a culture of learning.",
+    "set": "C"
+  },
+  {
+    "id": "C21",
+    "stem": "Which statement about Pythagoras fits the course?",
+    "options": [
+      "He is associated with Greek mathematics and numbers",
+      "He developed steam-powered factories",
+      "He led the Arabic medical translation movement",
+      "He authored The Canon of Medicine"
+    ],
+    "correct": 0,
+    "explanation": "The course associates Pythagoras with Greek mathematical thought about numbers.",
+    "set": "C"
+  },
+  {
+    "id": "C22",
+    "stem": "A scientist keeps complete records but changes the final report to please a sponsor. Which assessment is correct?",
+    "options": [
+      "The final report still violates scientific honesty",
+      "Only successful results need accurate reporting",
+      "Good records automatically make any report honest",
+      "Sponsor approval replaces the need for accuracy"
+    ],
+    "correct": 0,
+    "explanation": "Scientific honesty applies to the communicated findings as well as the records.",
+    "set": "C"
+  },
+  {
+    "id": "C23",
+    "stem": "Which statement best explains value-based scientific work in the Islamic framework?",
+    "options": [
+      "Evidence is unnecessary when intentions are good",
+      "Every scientific result is a matter of personal taste",
+      "Scientific activity is guided by ethical principles and responsibility",
+      "Researchers may use any method if a goal is useful"
+    ],
+    "correct": 2,
+    "explanation": "Value-based work connects scientific activity with ethics and social responsibility without removing the need for evidence.",
+    "set": "C"
+  },
+  {
+    "id": "C24",
+    "stem": "A team claims that helping society permits it to use dishonest methods. Which response is most appropriate?",
+    "options": [
+      "Honesty matters only when a project fails",
+      "Good intentions cancel every ethical duty",
+      "A beneficial purpose does not justify dishonest methods",
+      "Success makes every method permissible"
+    ],
+    "correct": 2,
+    "explanation": "The source rejects justifying an immoral method by appealing to an advanced or useful goal.",
+    "set": "C"
+  },
+  {
+    "id": "C25",
+    "stem": "Which pair accurately connects a concept with its meaning?",
+    "options": [
+      "Tawhid - the oneness of God",
+      "Tawhid - unlimited freedom for scientists",
+      "Social responsibility - ignoring effects on others",
+      "Scientific honesty - reporting only successes"
+    ],
+    "correct": 0,
+    "explanation": "Tawhid means the oneness of God.",
+    "set": "C"
+  },
+  {
+    "id": "C26",
+    "stem": "Which student response demonstrates logic in scientific discussion?",
+    "options": [
+      "\"It must be true because it has many likes.\"",
+      "\"Does this conclusion follow from the evidence?\"",
+      "\"A famous person said it, so no check is needed.\"",
+      "\"We should never question an existing claim.\""
+    ],
+    "correct": 1,
+    "explanation": "Logic examines whether reasons and evidence support a conclusion.",
+    "set": "C"
+  },
+  {
+    "id": "C27",
+    "stem": "A student says scientific study can count as worship. Which qualification best fits the Islamic framework?",
+    "options": [
+      "It automatically replaces all other obligations",
+      "It must produce wealth to have value",
+      "It should avoid all practical benefits",
+      "Its purpose and conduct should be ethically responsible"
+    ],
+    "correct": 3,
+    "explanation": "Scientific learning can be worship while remaining accountable to ethical responsibilities.",
+    "set": "C"
+  },
+  {
+    "id": "C28",
+    "stem": "Which contrast reflects the two views presented in the course?",
+    "options": [
+      "Both views define science as worship of technology",
+      "Dawkins rejects all evidence; the Catholic summary rejects all science",
+      "Both views require banning experiments",
+      "Dawkins raises an evidence concern; the Catholic summary allows harmony"
+    ],
+    "correct": 3,
+    "explanation": "The source contrasts a criticism about authority and evidence with a position allowing science-faith harmony.",
+    "set": "C"
+  },
+  {
+    "id": "C29",
+    "stem": "A researcher chooses a topic freely but remains accountable for harmful methods. What does this show?",
+    "options": [
+      "Scientific freedom is linked to social responsibility",
+      "Responsibility applies only to religious teachers",
+      "Scientific freedom removes all obligations",
+      "Ethics makes every research project impossible"
+    ],
+    "correct": 0,
+    "explanation": "The source describes freedom as bounded by ethical and social responsibilities.",
+    "set": "C"
+  },
+  {
+    "id": "C30",
+    "stem": "Which research team best combines scientific method and Islamic scientific ethics?",
+    "options": [
+      "The team chooses conclusions before observing",
+      "The team accepts a sponsor's opinion as its only evidence",
+      "The team hides failures to protect its reputation",
+      "The team tests claims and reports all relevant results truthfully"
+    ],
+    "correct": 3,
+    "explanation": "Evidence-based investigation and honest reporting work together rather than replacing one another.",
+    "set": "C"
+  }
+];

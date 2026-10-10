@@ -1,0 +1,13 @@
+{
+  "name": "psychology-game",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Jom Philosophy classroom game and individual revision for FSPU0012",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "dev": "python3 -m http.server 8000 --directory dist",
+    "test": "node --test tests/game.test.mjs",
+    "check": "node --check dist/app.js"
+  }
+}
