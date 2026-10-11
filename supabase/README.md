@@ -14,7 +14,7 @@ All pages are built for GitHub Pages. The independent backend is a Postgres RPC,
 
 ## Authorization and concurrency
 
-Private tables have RLS enabled, no browser grants and no public-schema exposure. Only `public.jom_live` is executable by `anon`/`authenticated`. Its locked search path, server-verified `auth.uid()`, approved lecturer list and room owner check protect teacher operations. User metadata cannot grant roles. Anonymous students use independent 256-bit tokens; storage contains SHA-256 hashes only. Browser CORS is not an authorization boundary.
+Private tables have RLS enabled, no browser grants and no public-schema exposure. The Data API exposes only the `public.jom_live` invoker wrapper. It calls the private `jom_private.live_api` function using narrowly granted schema usage and execution privileges; table access remains denied. The privileged code stays in an unexposed schema. Its locked search path, server-verified `auth.uid()`, approved lecturer list and room owner check protect teacher operations. User metadata cannot grant roles. Anonymous students use independent 256-bit tokens; storage contains SHA-256 hashes only. Browser CORS is not an authorization boundary.
 
 Each join, answer and transition locks the room inside one Postgres transaction. The server reads its clock after acquiring that lock. Capacity, unique names, one answer per question, version checks and deadlines are enforced in the database. Snapshots strip correctness and current-round scores until reveal. A lecturer's daily create quota is serialized with an advisory lock.
 

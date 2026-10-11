@@ -23,8 +23,14 @@ test('Postgres RPC enforces lecturer approval, ownership, private storage, locke
   assert.equal((await rpc('create',{user:'44444444-4444-4444-8444-444444444444',body:{}})).status,403,'email approval alone cannot bypass confirmation');
   assert.equal((await rpc('whoami',{user:uid})).body.authorized,true);
   await db.exec('set role anon');
+  await db.query("select set_config('request.jwt.claim.sub','',false)");
+  const anonymous=(await db.query("select public.jom_live('whoami') as result")).rows[0].result;
+  assert.equal(anonymous.body.authenticated,false,'the public invoker wrapper can serve an anonymous player');
+  const denied=(await db.query("select public.jom_live('create','POST','{}') as result")).rows[0].result;
+  assert.equal(denied.status,401,'schema usage and RPC execution do not grant host access');
   await assert.rejects(db.query('select * from jom_private.answers'),/permission denied/);
   await assert.rejects(db.query('select * from jom_private.approved_emails'),/permission denied/);
+  await assert.rejects(db.query('select jom_private.snapshot(null::jom_private.rooms,0,null,true)'),/permission denied/);
   await db.exec('reset role');
   const created=await rpc('create',{user:uid,body:{count:10,seconds:30,speedBonus:true}});
   assert.equal(created.status,201);const code=created.body.code,room='rooms/'+code;

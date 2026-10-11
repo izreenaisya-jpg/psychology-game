@@ -98,7 +98,7 @@ revoke execute on function jom_private.snapshot(jom_private.rooms,bigint,uuid,bo
 
 -- The only browser-facing entry point. auth.uid() comes from a verified Supabase JWT.
 -- Student bearer tokens are separate opaque values, never treated as lecturer identities.
-create function public.jom_live(p_path text,p_method text default 'GET',p_body jsonb default '{}',p_player_token text default null)
+create function jom_private.live_api(p_path text,p_method text default 'GET',p_body jsonb default '{}',p_player_token text default null)
 returns jsonb language plpgsql security definer set search_path = '' as $$
 declare
   uid uuid := auth.uid(); approved boolean; teacher text;
@@ -255,6 +255,16 @@ exception
     raise warning 'Jom live failure: %',sqlstate;
     return jsonb_build_object('status',500,'body',jsonb_build_object('error','The live game could not save this request. Please retry.'));
 end;
+$$;
+revoke execute on function jom_private.live_api(text,text,jsonb,text) from public,anon,authenticated;
+grant usage on schema jom_private to anon,authenticated;
+grant execute on function jom_private.live_api(text,text,jsonb,text) to anon,authenticated;
+
+-- The exposed function is an invoker wrapper. Privileged code stays in a private,
+-- unexposed schema; table reads/writes still have no browser grants.
+create function public.jom_live(p_path text,p_method text default 'GET',p_body jsonb default '{}',p_player_token text default null)
+returns jsonb language sql security invoker set search_path = '' as $$
+  select jom_private.live_api(p_path,p_method,p_body,p_player_token);
 $$;
 revoke execute on function public.jom_live(text,text,jsonb,text) from public,anon,authenticated;
 grant execute on function public.jom_live(text,text,jsonb,text) to anon,authenticated;
