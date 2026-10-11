@@ -17,20 +17,22 @@ for(const name of browserFiles.filter(name=>/\.(js|mjs)$/.test(name))){const fil
 let body=source.split('return <>')[1].split('</>;')[0].trim();
 body=body.replaceAll('className=','class=').replace('tabIndex={-1}','tabindex="-1"').replace(/<script dangerouslySetInnerHTML=.+?\/>/,'').replace('<GameLoader/>','<script src="config.js"></script><script type="module" src="app.js"></script>').replace('href="/assets/','href="assets/');
 const lecturerUrl=new URL('host.html',deployment.studentUrl).href;
+const homeUrl=new URL('#home',deployment.studentUrl).href;
+body=body.replace('<a class="brand" href="#home"',`<a class="brand" href="${homeUrl}"`);
 body=body.replace(/<nav aria-label="Main navigation">[\s\S]*?<\/nav>/,`<nav aria-label="Student navigation"><a href="#live-join" data-nav="live-join">Join game</a><a href="#home" data-nav="home">Practice</a><a href="#resources" data-nav="resources">Revision kit</a><a href="${lecturerUrl}">Pensyarah</a></nav>`);
 body=body.replace('src="config.js"',`src="config.js?v=${version}"`).replace('src="app.js"',`src="app.js?v=${version}"`);
 const html=`<!doctype html>\n<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5ee"><meta name="description" content="Join Teacher Reen’s live philosophy game. Enter your PIN and name."><title>Join Jom Philosophy!</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css"></head><body>${body}</body></html>\n`;
 writeFileSync(resolve(output,'index.html'),html);
+// Prefix root-shell assets without changing the document base for hash navigation.
+const rootShell=html=>html.replace(/(href|src)="((?:icon\.svg|style\.css|(?:host-)?config\.js|app\.js|host\.mjs)(?:\?[^"\s]*)?|assets\/[^"\s]+)"/g,'$1="docs/$2"');
 // Support existing Pages sites that publish main/(root), as well as main/docs.
-writeFileSync(resolve(root,'index.html'),html.replace('<head>','<head><base href="./docs/">'));
+writeFileSync(resolve(root,'index.html'),rootShell(html));
 const studentConfig={audience:'student',backend:deployment.backend,studentUrl:deployment.studentUrl,defaultRoute:'live-join',...(deployment.backend==='supabase'?{supabase:deployment.supabase}:{apiBase:deployment.apiBase})};
 writeFileSync(resolve(output,'config.js'),'window.JOM_CONFIG='+JSON.stringify(studentConfig)+';\n');
 writeFileSync(resolve(output,'host-config.js'),'window.JOM_CONFIG='+JSON.stringify({audience:'lecturer',backend:'supabase',supabase:deployment.supabase,studentUrl:deployment.studentUrl,defaultRoute:'live-host'})+';\n');
-const hostHtml=`<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Lecturer · Jom Philosophy!</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css?v=${version}"></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="${deployment.studentUrl}" aria-label="Jom Philosophy home"><span class="brand-icon">j.</span><span>jom<span class="brand-small">philosophy!</span></span></a><nav aria-label="Lecturer navigation"><a href="#live-host">My sessions</a></nav><button class="btn secondary small" id="host-signout" type="button">Sign out</button></header><main id="main" tabindex="-1"></main><footer class="footer"><span>Teacher Reen · Lecturer dashboard</span><span>Good answers have good reasons.</span></footer><script src="host-config.js?v=${version}"></script><script type="module" src="host.mjs?v=${version}"></script><noscript>Please enable JavaScript to host the game.</noscript></body></html>\n`;
+const hostHtml=`<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Lecturer · Jom Philosophy!</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css?v=${version}"></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="${homeUrl}" aria-label="Jom Philosophy home"><span class="brand-icon">j.</span><span>jom<span class="brand-small">philosophy!</span></span></a><nav aria-label="Lecturer navigation"><a href="#live-host">My sessions</a></nav><button class="btn secondary small" id="host-signout" type="button">Sign out</button></header><main id="main" tabindex="-1"></main><footer class="footer"><span>Teacher Reen · Lecturer dashboard</span><span>Good answers have good reasons.</span></footer><script src="host-config.js?v=${version}"></script><script type="module" src="host.mjs?v=${version}"></script><noscript>Please enable JavaScript to host the game.</noscript></body></html>\n`;
 writeFileSync(resolve(output,'host.html'),hostHtml);
-// A directory <base> would send saved-session hash links to the student index.
-// Prefix assets explicitly so every host fragment stays on this host document.
-writeFileSync(resolve(root,'host.html'),hostHtml.replace(/(href|src)="((?:icon\.svg|style\.css|host-config\.js|host\.mjs)(?:\?[^"\s]*)?)"/g,'$1="docs/$2"'));
+writeFileSync(resolve(root,'host.html'),rootShell(hostHtml));
 writeFileSync(resolve(output,'.nojekyll'),'');
 writeFileSync(resolve(root,'.nojekyll'),'');
 console.log('GitHub Pages student site prepared in docs/.');
