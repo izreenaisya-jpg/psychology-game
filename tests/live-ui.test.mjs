@@ -21,3 +21,26 @@ test('host and student views render synchronized states and lock/reveal choices'
  state={...state,state:'reveal',version:2,acceptingAnswers:false,question:{...state.question,correct:1,explanation:'Beta follows the evidence.',follow:'Explain the evidence.'},me:{...p,score:1000,correct_count:1,answer:{choice:1,correct:true,points:1000}}};mountLive('live-play/123456',main);await wait();assert.match(main.innerHTML,/Beta follows the evidence/);assert.match(main.innerHTML,/\+1000 points/);unmountLive();
  state={...state,state:'finished'};mountLive('live-play/123456',main);await wait();assert.match(main.innerHTML,/Game complete/);assert.match(main.innerHTML,/Final leaderboard/);unmountLive();
 });
+
+test('lecturer login offers Google only when the provider is enabled and preserves callback errors',async()=>{
+ const els=new Map();
+ const element=selector=>{if(!els.has(selector))els.set(selector,{innerHTML:'',textContent:'',hidden:false,classList:{add(){},remove(){},toggle(){}},focus(){}});return els.get(selector);};
+ const main=element('#main');main.contains=()=>false;main.querySelector=()=>null;
+ globalThis.document={querySelector:element,querySelectorAll:()=>[],activeElement:null,addEventListener(){},removeEventListener(){},body:{classList:{add(){},remove(){}}}};
+ globalThis.JOM_CONFIG={audience:'lecturer',backend:'supabase',supabase:{url:'https://example.supabase.co',publishableKey:'sb_publishable_test'}};
+ globalThis.sessionStorage={getItem:()=>null};
+ let enabled=false;
+ globalThis.fetch=async(url,opts)=>{
+  if(url.endsWith('/settings'))return Response.json({external:{google:enabled}});
+  const path=JSON.parse(opts.body).p_path;
+  return Response.json(path==='whoami'?{status:200,body:{authenticated:false}}:{status:401,body:{error:'Sign in required'}});
+ };
+ try{
+  mountLive('live-host',main);await new Promise(resolve=>setTimeout(resolve,20));
+  assert.match(main.innerHTML,/Continue with Google/);assert.match(main.innerHTML,/data-live-action="google-signin" disabled/);
+  assert.match(main.innerHTML,/<details[^>]*><summary>Use email and password instead/);unmountLive();
+  enabled=true;mountLive('live-host',main,{authError:'Google sign-in was cancelled.'});await new Promise(resolve=>setTimeout(resolve,20));
+  assert.match(main.innerHTML,/data-live-action="google-signin" >Continue/);assert.doesNotMatch(main.innerHTML,/being connected/);
+  assert.equal(element('#live-error').textContent,'Google sign-in was cancelled.');assert.equal(element('#live-error').hidden,false);
+ }finally{unmountLive();delete globalThis.JOM_CONFIG;}
+});

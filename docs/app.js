@@ -1,8 +1,8 @@
-import {mountLive,unmountLive} from './live.mjs?v=80849631c7cf';
-import {isStudentPage,studentRoute} from './audience.mjs?v=80849631c7cf';
-import {deck,rounds} from './deck.mjs?v=80849631c7cf';
-import {bank} from './bank.mjs?v=80849631c7cf';
-import {newClass,newSolo,teamTotal,maxScore,soloScore,rankTeams,blankResponse,escapeHtml as esc,csvCell} from './engine.mjs?v=80849631c7cf';
+import {mountLive,unmountLive} from './live.mjs?v=8b68442ea58c';
+import {isStudentPage,studentRoute} from './audience.mjs?v=8b68442ea58c';
+import {deck,rounds} from './deck.mjs?v=8b68442ea58c';
+import {bank} from './bank.mjs?v=8b68442ea58c';
+import {newClass,newSolo,teamTotal,maxScore,soloScore,rankTeams,blankResponse,escapeHtml as esc,csvCell} from './engine.mjs?v=8b68442ea58c';
 
 const main=document.querySelector('#main');
 const KEY='jom-philosophy-v1';

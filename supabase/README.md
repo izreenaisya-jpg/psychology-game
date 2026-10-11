@@ -4,13 +4,30 @@ All pages are built for GitHub Pages. The independent backend is a Postgres RPC,
 
 ## Current project
 
-The user-created project **general** (`iheutatkmiwoazmnggoi`, organization `izreenaisya`) is the active backend. Its API is `https://iheutatkmiwoazmnggoi.supabase.co`. All three migrations below are deployed and their filenames match the project's migration history. Lecturer email approval was configured through admin SQL; it is not a browser-controlled role or an Auth account. Auth's confirmation Site URL still needs verification and should be the GitHub host URL; its management UI requires sign-in and this connector has no Auth configuration operation. The first lecturer then needs to create and confirm their Auth account on the GitHub dashboard.
+The user-created project **general** (`iheutatkmiwoazmnggoi`, organization `izreenaisya`) is the active backend. Its API is `https://iheutatkmiwoazmnggoi.supabase.co`. All three migrations below are deployed and their filenames match the project's migration history. Lecturer email approval was configured through admin SQL; it is not a browser-controlled role or an Auth account. The frontend now supports Google OAuth with PKCE. The project's public Auth settings report Google disabled; provider credentials, Site URL and redirect allowlist require the owner's dashboard setup. The connector has no Auth configuration operation. Once enabled, Google creates/signs in the Auth account automatically, without a separate password signup.
 
 - `20261011020837_jom_live_game.sql`: private schema, authorization and game RPC.
 - `20261011020858_jom_revision_questions.sql`: 100 original revision questions.
 - `20261011021543_jom_answer_player_index.sql`: covering index for the player/room foreign key.
 
-Public REST checks confirmed that anonymous callers cannot list host sessions, and the GitHub-origin CORS preflight succeeded. GitHub Pages publication succeeded; browser checks verified the student join form, invalid-PIN API response, student host-route guard and separate lecturer email/password form. A hosted database transaction tested 30 joins, synchronized questions, locked answers, hidden correctness/scores before reveal and full lecturer results. All its fixtures were rolled back. First-account login and a complete game in the published browser remain to be verified after the lecturer chooses their password.
+Public REST checks confirmed that anonymous callers cannot list host sessions, and the GitHub-origin CORS preflight succeeded. Previous browser checks verified the student join form, invalid-PIN API response, student host-route guard and lecturer login gate. A hosted database transaction tested 30 joins, synchronized questions, locked answers, hidden correctness/scores before reveal and full lecturer results. All its fixtures were rolled back. Tests cover Google PKCE binding, callback cleanup, expired/unsolicited codes, cancelled consent, disabled providers, blocked storage, session/JWT separation and forged student sign-in actions. Real Google consent/login and a complete game in the published browser remain pending.
+
+## Enable Google login
+
+Follow [Supabase's Google login guide](https://supabase.com/docs/guides/auth/social-login/auth-google). Use an existing Google Cloud project or an owner-created one; no billing upgrade is required by this app. Configure the Google Auth Platform audience, branding and only the normal `openid`, email and profile scopes. When the Google app is in testing, add the approved lecturer email as a test user.
+
+Create/use a **Web application** OAuth client with these settings:
+
+| Setting | Value |
+| --- | --- |
+| Google authorized JavaScript origin | `https://izreenaisya-jpg.github.io` |
+| Google authorized redirect URI | `https://iheutatkmiwoazmnggoi.supabase.co/auth/v1/callback` |
+| Supabase Auth Site URL | `https://izreenaisya-jpg.github.io/psychology-game/host.html` |
+| Supabase additional redirect URL | `https://izreenaisya-jpg.github.io/psychology-game/host.html` |
+
+Enter the OAuth Client ID and Client Secret directly in **general → Authentication → Sign In / Providers → Google**, enable the provider and save. Keep the secret in Supabase; never send it to chat or commit it to GitHub. Leave nonce/email verification protections enabled. Keep signup enabled so a first Google sign-in can create the account; the separate approved-email and owner checks still enforce host privileges.
+
+The callback opens the exact current `host.html` path, exchanges an auth code with its tab's one-time random verifier and clears callback parameters before API requests. It never accepts access/refresh tokens supplied in the URL fragment. Google identity alone does not grant host access: a confirmed email must match the admin-controlled approval list. Reload the host page after enabling the provider; the button reads live Auth settings and becomes available without another code deployment.
 
 ## Deploy in order
 
@@ -18,7 +35,7 @@ Public REST checks confirmed that anonymous callers cannot list host sessions, a
 2. Apply SQL files in `migrations/` in filename order through the Supabase migration connector. Existing D1 migrations are a separate backend and remain immutable.
 3. Obtain the project's URL and an enabled `sb_publishable_...` key. These are public client settings. Never use a service role/secret key in Pages.
 4. Add the lecturer's explicitly chosen email to `jom_private.approved_emails` using an admin SQL operation. The browser cannot write this list. Confirmed Auth accounts matching that list are bound to a lecturer ID. Disabled lecturer IDs remain disabled. There is no first-user-wins rule.
-5. Set the Auth Site URL to the GitHub `host.html` URL and allow that confirmation redirect. The lecturer creates their account and chooses their own password there, confirms the email and signs in. Auth email delivery must be configured/verified for the chosen address; Supabase's default email service may restrict recipients. Do not disable email confirmation to bypass delivery issues.
+5. Enable Google using the instructions above and set the Auth Site URL/redirect allowlist to the GitHub `host.html` URL. The lecturer uses **Continue with Google** with the approved email. For the retained email/password fallback, the lecturer chooses their own password and confirms their email. Do not disable email confirmation to bypass delivery issues.
 6. Set `backend` to `supabase` in `config/pages.json`, supply the verified project URL/publishable key and remove `apiBase`. Run checks, `pages:build` and build, then publish the generated root shells and `docs/` to GitHub.
 7. Verify the published host login, anonymous student join, synchronized question, hidden score before reveal, locked answer, owner control, private CSV and logout. Only then describe the migration as complete.
 

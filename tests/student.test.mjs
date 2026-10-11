@@ -21,6 +21,8 @@ test('student navigation and forged teacher actions cannot open host UI; solo pr
   location.hash='#'+route;assert.match(html(),/Ready to think/);assert.doesNotMatch(html(),/host dashboard|Sign in|live-create|data-live-action="start"/);
  }
  assert.equal(requests.length,0);
+ for(const fn of [...(listeners.get('click')||[])])await fn({target:{closest:selector=>selector==='[data-live-action]'?{dataset:{liveAction:'google-signin'},disabled:false}:null}});
+ assert.equal(requests.length,0,'forged Google sign-in action cannot start authentication from the student page');
  await click('class-start');assert.equal(memory.has('jom-philosophy-v1'),false);assert.match(html(),/Ready to think/);
  location.hash='#home';await click('solo-start');assert.match(html(),/Solo Quest/);
  const solo=JSON.parse(memory.get('jom-philosophy-v1')).solo,q=bank.find(q=>q.id===solo.ids[0]);
