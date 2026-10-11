@@ -1,6 +1,6 @@
-import {escapeHtml as esc,csvCell} from './engine.mjs?v=8b68442ea58c';
-import {isStudentPage,studentRoute} from './audience.mjs?v=8b68442ea58c';
-import {liveRequest,usesSupabase,signInLecturer,registerLecturer,googleProviderEnabled,googleSignInUrl} from './backend.mjs?v=8b68442ea58c';
+import {escapeHtml as esc,csvCell} from './engine.mjs?v=176e15e3cb7b';
+import {isStudentPage,studentRoute} from './audience.mjs?v=176e15e3cb7b';
+import {liveRequest,usesSupabase,signInLecturer,registerLecturer,googleProviderEnabled,googleSignInUrl} from './backend.mjs?v=176e15e3cb7b';
 let cleanup=()=>{};
 const STORAGE='jom-live-players-v1';
 const memoryPlayers={};

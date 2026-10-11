@@ -16,7 +16,8 @@ const version=hash.digest('hex').slice(0,12);
 for(const name of browserFiles.filter(name=>/\.(js|mjs)$/.test(name))){const file=resolve(output,name);writeFileSync(file,readFileSync(file,'utf8').replace(/(from\s*['"])(\.\/[\w.-]+\.(?:mjs|js))(['"])/g,`$1$2?v=${version}$3`));}
 let body=source.split('return <>')[1].split('</>;')[0].trim();
 body=body.replaceAll('className=','class=').replace('tabIndex={-1}','tabindex="-1"').replace(/<script dangerouslySetInnerHTML=.+?\/>/,'').replace('<GameLoader/>','<script src="config.js"></script><script type="module" src="app.js"></script>').replace('href="/assets/','href="assets/');
-body=body.replace(/<nav aria-label="Main navigation">[\s\S]*?<\/nav>/,'<nav aria-label="Student navigation"><a href="#live-join" data-nav="live-join">Join game</a><a href="#home" data-nav="home">Practice</a><a href="#resources" data-nav="resources">Revision kit</a></nav>');
+const lecturerUrl=new URL('host.html',deployment.studentUrl).href;
+body=body.replace(/<nav aria-label="Main navigation">[\s\S]*?<\/nav>/,`<nav aria-label="Student navigation"><a href="#live-join" data-nav="live-join">Join game</a><a href="#home" data-nav="home">Practice</a><a href="#resources" data-nav="resources">Revision kit</a><a href="${lecturerUrl}">Pensyarah</a></nav>`);
 body=body.replace('src="config.js"',`src="config.js?v=${version}"`).replace('src="app.js"',`src="app.js?v=${version}"`);
 const html=`<!doctype html>\n<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5ee"><meta name="description" content="Join Teacher Reen’s live philosophy game. Enter your PIN and name."><title>Join Jom Philosophy!</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css"></head><body>${body}</body></html>\n`;
 writeFileSync(resolve(output,'index.html'),html);

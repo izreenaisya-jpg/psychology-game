@@ -1,5 +1,5 @@
-import {mountLive} from './live.mjs?v=8b68442ea58c';
-import {signOutLecturer,supabaseReady,finishGoogleSignIn} from './backend.mjs?v=8b68442ea58c';
+import {mountLive} from './live.mjs?v=176e15e3cb7b';
+import {signOutLecturer,supabaseReady,finishGoogleSignIn} from './backend.mjs?v=176e15e3cb7b';
 const main=document.querySelector('#main');
 let authError='';
 function render(){
