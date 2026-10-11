@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5ee"><meta name="description" content="Join Teacher Reen’s live philosophy game. Enter your PIN and name."><title>Join Jom Philosophy!</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css"></head><body><a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Jom Philosophy home"><span class="brand-icon">j.</span><span>jom<span class="brand-small">philosophy!</span></span></a>
+    <nav aria-label="Main navigation"><a href="#home" data-nav="home">Play</a><a href="#live-host" data-nav="live-host">Host live</a><a href="#live-join" data-nav="live-join">Join game</a><a href="#lesson" data-nav="lesson">Class plan</a><a href="#resources" data-nav="resources">Revision kit</a></nav>
+    <div class="teacher-tag"><span class="status-dot"></span>with Teacher Reen</div>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer class="footer"><span>FSPU0012 · Philosophy of Science & Technology</span><span>Good answers have good reasons.</span></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="confirm-dialog"><h2 id="dialog-title">Start again?</h2><p id="dialog-text"></p><div class="button-row"><button data-action="dialog-cancel" class="btn secondary">Keep playing</button><button data-action="dialog-confirm" class="btn dark">Start again</button></div></dialog>
+  <script src="config.js"></script><script type="module" src="app.js"></script>
+  <noscript><p class="notice">Please enable JavaScript to play. You can still download <a href="assets/practice-a.pdf">Practice Set A</a>.</p></noscript></body></html>

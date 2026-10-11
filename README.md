@@ -1,7 +1,14 @@
 # psychology-game · Jom Philosophy!
 
 Canonical source for Teacher Reen’s FSPU0012 revision game.
-Hosted app: https://jom-philosophy-reen.izreenaisya.chatgpt.site
+Student site (GitHub Pages target): https://izreenaisya-jpg.github.io/psychology-game/
+Lecturer/live server: https://jom-philosophy-reen.izreenaisya.chatgpt.site
+
+## GitHub Pages publishing
+
+The student webpage is prepared in `docs/`, including a complete `index.html`, relative assets and the original revision PDFs. It opens on the PIN/name join screen. In this repository’s **Settings → Pages**, select **Deploy from a branch → main → /docs**, then Save. GitHub publishes changes pushed to that folder. The target URL is not a verified live publication until Pages has been enabled and a build has succeeded.
+
+After changing browser code, run `npm run pages:build` and commit the regenerated `docs/` files. GitHub Pages serves the webpage; synchronized sessions and student answers still use the existing Worker/D1 server. Student requests omit browser cookies and authenticate submissions with their player token. The server allows this GitHub origin only on the public room snapshot, join and answer routes. Host controls and full results stay on the authenticated server origin. The lecturer screen shares the GitHub student URL.
 
 ## Play live
 
@@ -45,4 +52,4 @@ npm run build
 
 Tests include 30 concurrent players, late/stale/duplicate submissions, lecturer isolation, 60-player capacity, resume tokens, complete games, saved records and speed-score bounds. They do not replace visual testing on actual phones and a projector.
 
-Continue development here. GitHub pushes do not automatically publish the Site. Deploy a verified revision through Sites and preserve its project ID and access policy. Never commit credentials, student records, local databases or generated build output.
+Continue development here. Once GitHub Pages is enabled, pushes to `docs/` publish the student website. GitHub pushes do not automatically publish changes to the live server. Deploy a verified revision through Sites and preserve its project ID and access policy. Never commit credentials, student records, local databases or generated build output.

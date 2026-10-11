@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync,readdirSync} from 'node:fs';
-import {handleLive,calculatePoints} from '../lib/live-service.mjs';
+import {calculatePoints} from '../lib/live-service.mjs';
+import {handleLiveHttp} from '../lib/live-cors.mjs';
 const owner={userId:'teacher-1',displayName:'Teacher Reen'},other={userId:'teacher-2'};
 function setup(){
  const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys = ON');
@@ -14,7 +15,7 @@ function setup(){
  };}};}};
  let now=1800000000000;
  const call=async(path,{body,user=null,token,origin}={})=>{
-  const r=await handleLive(new Request('https://game.test/api/live/'+path,{method:body?'POST':'GET',headers:{...(body?{'content-type':'application/json'}:{}),...(token?{authorization:'Bearer '+token}:{}),...(origin?{origin}:{})},body:body?JSON.stringify(body):undefined}),{db,user,now});return {status:r.status,data:await r.json()};
+  const r=await handleLiveHttp(new Request('https://game.test/api/live/'+path,{method:body?'POST':'GET',headers:{...(body?{'content-type':'application/json'}:{}),...(token?{authorization:'Bearer '+token}:{}),...(origin?{origin}:{})},body:body?JSON.stringify(body):undefined}),{db,user,now});return {status:r.status,data:await r.json()};
  };
  return {sql,db,call,advance:ms=>now+=ms};
 }
@@ -64,4 +65,18 @@ test('a full game finishes and saved response records match all rounds',async()=
 test('empty lobby can end safely and speed bonus is bounded',async()=>{
  const c=setup(),code=await newGame(c);assert.equal((await control(c,code,'start')).status,409);assert.equal((await control(c,code,'finish')).status,200);c.sql.close();
  assert.equal(calculatePoints(false,0,45,true),0);assert.equal(calculatePoints(true,0,45,true),1200);assert.equal(calculatePoints(true,22500,45,true),1100);assert.equal(calculatePoints(true,45000,45,true),1000);assert.equal(calculatePoints(true,0,45,false),1000);
+});
+
+test('GitHub Pages students can join and answer; foreign origins and host routes stay blocked',async()=>{
+ const c=setup(),code=await newGame(c),origin='https://izreenaisya-jpg.github.io';
+ const joined=await c.call('join',{origin,body:{code,nickname:'GitHub student'}});assert.equal(joined.status,201);
+ await control(c,code,'start');
+ const answer=await c.call('rooms/'+code+'/answer',{origin,token:joined.data.token,body:{questionIndex:0,choice:1}});assert.equal(answer.status,200);
+ const snapshot=await c.call('rooms/'+code,{origin,token:joined.data.token});assert.equal(snapshot.data.me.answer.choice,1);
+ assert.equal((await c.call('rooms/'+code+'/host',{origin,user:owner})).status,403);
+ assert.equal((await c.call('rooms/'+code+'/results',{origin,user:owner})).status,403);
+ assert.equal((await c.call('rooms/'+code,{origin:'https://untrusted.test'})).status,403);
+ const preflight=await handleLiveHttp(new Request('https://game.test/api/live/join',{method:'OPTIONS',headers:{origin,'access-control-request-method':'POST','access-control-request-headers':'content-type'}}));
+ assert.equal(preflight.status,204);assert.equal(preflight.headers.get('access-control-allow-origin'),origin);assert.equal(preflight.headers.get('access-control-allow-credentials'),null);
+ const blocked=await handleLiveHttp(new Request('https://game.test/api/live/create',{method:'OPTIONS',headers:{origin,'access-control-request-method':'POST'}}));assert.equal(blocked.status,403);c.sql.close();
 });

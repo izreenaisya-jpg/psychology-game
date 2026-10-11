@@ -11,7 +11,7 @@ export default function Page(){return <>
   <footer className="footer"><span>FSPU0012 · Philosophy of Science & Technology</span><span>Good answers have good reasons.</span></footer>
   <div id="toast" role="status" aria-live="polite"></div>
   <dialog id="confirm-dialog"><h2 id="dialog-title">Start again?</h2><p id="dialog-text"></p><div className="button-row"><button data-action="dialog-cancel" className="btn secondary">Keep playing</button><button data-action="dialog-confirm" className="btn dark">Start again</button></div></dialog>
-  <GameLoader/>
+  <script dangerouslySetInnerHTML={{__html:'window.JOM_CONFIG={studentUrl:"https://izreenaisya-jpg.github.io/psychology-game/"};'}}/><GameLoader/>
   <noscript><p className="notice">Please enable JavaScript to play. You can still download <a href="/assets/practice-a.pdf">Practice Set A</a>.</p></noscript>
 
 </>;}

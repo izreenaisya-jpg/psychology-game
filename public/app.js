@@ -20,7 +20,7 @@ let toastTimeout;
 
 function save(){try{localStorage.setItem(KEY,JSON.stringify({classroom,solo,exitText}));}catch{if(storageOK)toast('This browser cannot save progress. Keep this tab open.');storageOK=false;}}
 function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),3500);}
-function route(){return location.hash.replace('#','')||'home';}
+function route(){return location.hash.replace('#','')||(globalThis.JOM_CONFIG?.defaultRoute||'home');}
 function go(hash){if(route()===hash)render();else location.hash=hash;}
 function stopTimer(){if(timer)clearInterval(timer);timer=null;updateTimer();}
 function updateTimer(){document.querySelectorAll('[data-timer]').forEach(el=>el.textContent=`${Math.floor(remaining/60)}:${String(remaining%60).padStart(2,'0')}`);const b=document.querySelector('[data-action="timer"]');if(b)b.textContent=timer?'Pause':remaining>0?'Start':'Restart';}
