@@ -1,1 +1,1 @@
-window.JOM_CONFIG={"audience":"lecturer","backend":"supabase","supabase":{"url":"","publishableKey":""},"studentUrl":"https://izreenaisya-jpg.github.io/psychology-game/","defaultRoute":"live-host"};
+window.JOM_CONFIG={"audience":"lecturer","backend":"supabase","supabase":{"url":"https://iheutatkmiwoazmnggoi.supabase.co","publishableKey":"sb_publishable_aG723lEL1Tkil6eq2r4r_A_Ge0fYLbI"},"studentUrl":"https://izreenaisya-jpg.github.io/psychology-game/","defaultRoute":"live-host"};

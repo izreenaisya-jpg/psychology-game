@@ -56,3 +56,6 @@ next-env.d.ts
 /work/
 
 *.tsbuildinfo
+
+# Supabase CLI checkout state.
+/supabase/.temp/

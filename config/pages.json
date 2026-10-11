@@ -1,6 +1,8 @@
 {
-  "backend": "legacy",
-  "apiBase": "https://jom-philosophy-reen.izreenaisya.chatgpt.site",
+  "backend": "supabase",
   "studentUrl": "https://izreenaisya-jpg.github.io/psychology-game/",
-  "supabase": {"url": "", "publishableKey": ""}
+  "supabase": {
+    "url": "https://iheutatkmiwoazmnggoi.supabase.co",
+    "publishableKey": "sb_publishable_aG723lEL1Tkil6eq2r4r_A_Ge0fYLbI"
+  }
 }

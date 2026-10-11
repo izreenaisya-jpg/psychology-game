@@ -1,1 +1,1 @@
-window.JOM_CONFIG={"audience":"student","backend":"legacy","studentUrl":"https://izreenaisya-jpg.github.io/psychology-game/","defaultRoute":"live-join","apiBase":"https://jom-philosophy-reen.izreenaisya.chatgpt.site"};
+window.JOM_CONFIG={"audience":"student","backend":"supabase","studentUrl":"https://izreenaisya-jpg.github.io/psychology-game/","defaultRoute":"live-join","supabase":{"url":"https://iheutatkmiwoazmnggoi.supabase.co","publishableKey":"sb_publishable_aG723lEL1Tkil6eq2r4r_A_Ge0fYLbI"}};
