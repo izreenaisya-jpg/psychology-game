@@ -4,13 +4,13 @@ All pages are built for GitHub Pages. The independent backend is a Postgres RPC,
 
 ## Current project
 
-The user-created project **general** (`iheutatkmiwoazmnggoi`, organization `izreenaisya`) is the active backend. Its API is `https://iheutatkmiwoazmnggoi.supabase.co`. All three migrations below are deployed and their filenames match the project's migration history. Lecturer email approval was configured through admin SQL; it is not a browser-controlled role or an Auth account. Auth's confirmation Site URL still needs to be set to the GitHub host URL; its management UI requires sign-in and this connector has no Auth configuration operation. The first lecturer then needs to create and confirm their Auth account on the GitHub dashboard.
+The user-created project **general** (`iheutatkmiwoazmnggoi`, organization `izreenaisya`) is the active backend. Its API is `https://iheutatkmiwoazmnggoi.supabase.co`. All three migrations below are deployed and their filenames match the project's migration history. Lecturer email approval was configured through admin SQL; it is not a browser-controlled role or an Auth account. Auth's confirmation Site URL still needs verification and should be the GitHub host URL; its management UI requires sign-in and this connector has no Auth configuration operation. The first lecturer then needs to create and confirm their Auth account on the GitHub dashboard.
 
 - `20261011020837_jom_live_game.sql`: private schema, authorization and game RPC.
 - `20261011020858_jom_revision_questions.sql`: 100 original revision questions.
 - `20261011021543_jom_answer_player_index.sql`: covering index for the player/room foreign key.
 
-Public REST checks confirmed that anonymous callers cannot list host sessions. A hosted database transaction tested 30 joins, synchronized questions, locked answers, hidden correctness/scores before reveal and full lecturer results. All its fixtures were rolled back. First-account login and a complete game in the published browser remain to be verified after the lecturer chooses their password.
+Public REST checks confirmed that anonymous callers cannot list host sessions, and the GitHub-origin CORS preflight succeeded. GitHub Pages publication succeeded; browser checks verified the student join form, invalid-PIN API response, student host-route guard and separate lecturer email/password form. A hosted database transaction tested 30 joins, synchronized questions, locked answers, hidden correctness/scores before reveal and full lecturer results. All its fixtures were rolled back. First-account login and a complete game in the published browser remain to be verified after the lecturer chooses their password.
 
 ## Deploy in order
 
