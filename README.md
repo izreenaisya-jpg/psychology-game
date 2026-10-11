@@ -2,7 +2,8 @@
 
 Canonical source for Teacher Reen’s FSPU0012 revision game.
 Student site (GitHub Pages): https://izreenaisya-jpg.github.io/psychology-game/
-Lecturer/live server: https://jom-philosophy-reen.izreenaisya.chatgpt.site
+New lecturer page (activation pending): https://izreenaisya-jpg.github.io/psychology-game/host.html
+Existing live server (during cutover): https://jom-philosophy-reen.izreenaisya.chatgpt.site
 
 ## GitHub Pages publishing
 
@@ -12,7 +13,9 @@ After changing browser code, run `npm run pages:build` and commit the regenerate
 
 The GitHub webpage is explicitly a **student audience**: Join game, Practice and Revision kit. It has no host links, teacher setup or classroom-control views. Direct host/setup hashes resolve to the student join screen, and the student client refuses host API calls. These interface guards supplement the server’s existing owner checks and CORS restrictions; they do not replace server authorization.
 
-**Migration status:** the student webpage is on GitHub, while the authenticated lecturer page, API and D1 records still run on the existing ChatGPT Site. Removing ChatGPT hosting entirely requires an independently provisioned backend and lecturer authentication, because GitHub Pages cannot execute the live API. Do not describe the current split deployment as fully hosted on GitHub.
+**Migration status:** the student webpage and separate new lecturer shell are on GitHub. The Supabase backend migrations, lecturer authentication, approved-account checks and frontend transport are implemented and covered by Postgres tests. Provisioning a Supabase project and approving the lecturer's chosen email remain necessary before activation. The student live API still uses the existing ChatGPT Site until that cutover is verified. The new GitHub lecturer page shows setup in progress instead of sending users to ChatGPT. Do not describe the current deployment as fully migrated.
+
+See [Supabase deployment instructions](supabase/README.md). Public connection settings live in `config/pages.json`; the build refuses an incomplete Supabase cutover. `host.html` has its own configuration and route handling. The student page contains no links to it. Opening the host URL will require an approved, confirmed lecturer account once activated. Signup or a public URL alone does not grant host privileges.
 
 ## Play live
 
@@ -56,4 +59,4 @@ npm run build
 
 Tests include 30 concurrent players, late/stale/duplicate submissions, lecturer isolation, 60-player capacity, resume tokens, complete games, saved records and speed-score bounds. They do not replace visual testing on actual phones and a projector.
 
-Continue development here. Run `npm run pages:build` and commit its generated root shell and `docs/` files to publish the student website. GitHub pushes do not automatically publish changes to the live server. Deploy a verified revision through Sites and preserve its project ID and access policy. Never commit credentials, student records, local databases or generated build output.
+Continue development here. Run `npm run pages:build` and commit both generated root shells and `docs/` files to publish the GitHub pages. GitHub pushes do not apply Supabase migrations. Follow the verified cutover order in `supabase/README.md`, and retain historical D1 records. Never commit credentials, student records, local databases or generated framework build output.
