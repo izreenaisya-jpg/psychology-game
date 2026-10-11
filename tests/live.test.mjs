@@ -75,6 +75,10 @@ test('GitHub Pages students can join and answer; foreign origins and host routes
  const snapshot=await c.call('rooms/'+code,{origin,token:joined.data.token});assert.equal(snapshot.data.me.answer.choice,1);
  assert.equal((await c.call('rooms/'+code+'/host',{origin,user:owner})).status,403);
  assert.equal((await c.call('rooms/'+code+'/results',{origin,user:owner})).status,403);
+ assert.equal((await c.call('create',{origin,user:owner,body:{count:10}})).status,403);
+ assert.equal((await c.call('rooms/'+code+'/control',{origin,user:owner,token:joined.data.token,body:{action:'finish',version:1}})).status,403);
+ assert.equal((await c.call('rooms/'+code+'/host',{token:joined.data.token})).status,401);
+ assert.equal((await c.call('rooms/'+code+'/control',{token:joined.data.token,body:{action:'finish',version:1}})).status,401);
  assert.equal((await c.call('rooms/'+code,{origin:'https://untrusted.test'})).status,403);
  const preflight=await handleLiveHttp(new Request('https://game.test/api/live/join',{method:'OPTIONS',headers:{origin,'access-control-request-method':'POST','access-control-request-headers':'content-type'}}));
  assert.equal(preflight.status,204);assert.equal(preflight.headers.get('access-control-allow-origin'),origin);assert.equal(preflight.headers.get('access-control-allow-credentials'),null);

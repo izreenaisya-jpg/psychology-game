@@ -1,4 +1,5 @@
 import {escapeHtml as esc,csvCell} from './engine.mjs';
+import {isStudentPage,studentRoute} from './audience.mjs';
 let cleanup=()=>{};
 const STORAGE='jom-live-players-v1';
 const memoryPlayers={};
@@ -6,7 +7,7 @@ function readPlayers(){try{return {...memoryPlayers,...JSON.parse(localStorage.g
 function remember(code,player){memoryPlayers[code]=player;try{const all=readPlayers();all[code]=player;localStorage.setItem(STORAGE,JSON.stringify(all));return true;}catch{return false;}}
 const config=()=>globalThis.JOM_CONFIG||{};
 const apiUrl=path=>(config().apiBase||'')+'/api/live/'+path;
-async function api(path,{body,token,signal}={}){const response=await fetch(apiUrl(path),{credentials:config().apiBase?'omit':'same-origin',method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{})},body:body?JSON.stringify(body):undefined,signal,cache:'no-store'});let data;try{data=await response.json();}catch{throw new Error('The live game is unavailable. Please retry.');}if(!response.ok)throw Object.assign(new Error(data.error||'Please retry.'),{status:response.status});return data;}
+async function api(path,{body,token,signal}={}){if(isStudentPage()&&!(!body&&/^rooms\/\d{6}$/.test(path)||body&&(path==='join'||/^rooms\/\d{6}\/answer$/.test(path))))throw new Error('This page is for students. Enter your lecturer’s game PIN.');const response=await fetch(apiUrl(path),{credentials:config().apiBase?'omit':'same-origin',method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{})},body:body?JSON.stringify(body):undefined,signal,cache:'no-store'});let data;try{data=await response.json();}catch{throw new Error('The live game is unavailable. Please retry.');}if(!response.ok)throw Object.assign(new Error(data.error||'Please retry.'),{status:response.status});return data;}
 const button=(action,label,cls='primary',extra='')=>`<button class="btn ${cls}" data-live-action="${action}" ${extra}>${label}</button>`;
 const back='<a class="back" href="#home">← Back to play</a>';
 const errorBox='<p id="live-error" class="alert" role="alert" hidden></p>';
@@ -15,6 +16,7 @@ function scoreboard(s,limit=10){return `<div class="live-board"><div class="scor
 function question(s,interactive=false,pending=false){const q=s.question;if(!q)return '';const answer=s.me?.answer,revealed=['reveal','finished'].includes(s.state);return `<div class="q-top"><span class="pill purple">${esc(q.tag)}</span><span>Question ${s.questionIndex+1} / ${s.total}</span></div>${q.claim?`<div class="claim"><span class="claim-label">Simulated AI claim · check the reasoning</span>${esc(q.claim)}</div>`:''}<h2 class="question">${esc(q.stem)}</h2><div class="options live-options">${q.options.map((o,i)=>{const classes=[revealed&&i===q.correct?'correct':'',answer?.choice===i?'selected':'',revealed&&answer?.choice===i&&i!==q.correct?'wrong':''].join(' ');const content=`<span class="badge">${'ABCD'[i]}</span><span>${esc(o)}${revealed&&i===q.correct?' <strong>✓ Correct</strong>':''}</span>`;return interactive?`<button class="option ${classes}" data-live-action="answer" data-choice="${i}" ${!s.acceptingAnswers||answer||pending?'disabled':''} aria-pressed="${answer?.choice===i}">${content}</button>`:`<div class="option ${classes}">${content}</div>`;}).join('')}</div>${revealed?`<div class="reveal"><p class="reveal-label">Answer ${'ABCD'[q.correct]} · Let’s discuss</p><p>${esc(q.explanation)}</p><div class="follow"><strong>Defend your answer</strong>${esc(q.follow)}</div></div>`:''}`;}
 export function unmountLive(){cleanup();cleanup=()=>{};}
 export function mountLive(route,main){
+ if(isStudentPage())route=studentRoute(route);
  unmountLive();const [view,code='']=route.split('/');const abort=new AbortController();let stopped=false,poll=null,ticker=null,busy=false,state=null,lastSignature='',identity=null,lastSuccess=Date.now(),serverOffset=0;
  const error=(message)=>{const el=document.querySelector('#live-error');if(el){el.hidden=!message;el.textContent=message;}};
  const connected=(message)=>{const el=document.querySelector('#live-connection');if(el)el.textContent=message;};

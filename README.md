@@ -10,6 +10,10 @@ The student webpage is prepared in `docs/`, including a complete `index.html`, r
 
 After changing browser code, run `npm run pages:build` and commit the regenerated `docs/` files. GitHub Pages serves the webpage; synchronized sessions and student answers still use the existing Worker/D1 server. Student requests omit browser cookies and authenticate submissions with their player token. The server allows this GitHub origin only on the public room snapshot, join and answer routes. Host controls and full results stay on the authenticated server origin. The lecturer screen shares the GitHub student URL.
 
+The GitHub webpage is explicitly a **student audience**: Join game, Practice and Revision kit. It has no host links, teacher setup or classroom-control views. Direct host/setup hashes resolve to the student join screen, and the student client refuses host API calls. These interface guards supplement the server’s existing owner checks and CORS restrictions; they do not replace server authorization.
+
+**Migration status:** the student webpage is on GitHub, while the authenticated lecturer page, API and D1 records still run on the existing ChatGPT Site. Removing ChatGPT hosting entirely requires an independently provisioned backend and lecturer authentication, because GitHub Pages cannot execute the live API. Do not describe the current split deployment as fully hosted on GitHub.
+
 ## Play live
 
 1. Lecturer: open **Host live**, sign in with ChatGPT, choose 10/15/20 questions and a 30/45/60/75-second timer, then create a session.
