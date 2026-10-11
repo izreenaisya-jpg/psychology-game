@@ -28,7 +28,9 @@ writeFileSync(resolve(output,'config.js'),'window.JOM_CONFIG='+JSON.stringify(st
 writeFileSync(resolve(output,'host-config.js'),'window.JOM_CONFIG='+JSON.stringify({audience:'lecturer',backend:'supabase',supabase:deployment.supabase,studentUrl:deployment.studentUrl,defaultRoute:'live-host'})+';\n');
 const hostHtml=`<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Lecturer · Jom Philosophy!</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css?v=${version}"></head><body><a class="skip" href="#main">Skip to content</a><header class="topbar"><a class="brand" href="#live-host"><span class="brand-icon">j.</span><span>jom<span class="brand-small">philosophy!</span></span></a><nav aria-label="Lecturer navigation"><a href="#live-host">My sessions</a></nav><button class="btn secondary small" id="host-signout" type="button">Sign out</button></header><main id="main" tabindex="-1"></main><footer class="footer"><span>Teacher Reen · Lecturer dashboard</span><span>Good answers have good reasons.</span></footer><script src="host-config.js?v=${version}"></script><script type="module" src="host.mjs?v=${version}"></script><noscript>Please enable JavaScript to host the game.</noscript></body></html>\n`;
 writeFileSync(resolve(output,'host.html'),hostHtml);
-writeFileSync(resolve(root,'host.html'),hostHtml.replace('<head>','<head><base href="./docs/">'));
+// A directory <base> would send saved-session hash links to the student index.
+// Prefix assets explicitly so every host fragment stays on this host document.
+writeFileSync(resolve(root,'host.html'),hostHtml.replace(/(href|src)="((?:icon\.svg|style\.css|host-config\.js|host\.mjs)(?:\?[^"\s]*)?)"/g,'$1="docs/$2"'));
 writeFileSync(resolve(output,'.nojekyll'),'');
 writeFileSync(resolve(root,'.nojekyll'),'');
 console.log('GitHub Pages student site prepared in docs/.');
