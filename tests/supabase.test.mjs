@@ -22,6 +22,9 @@ test('Postgres RPC enforces lecturer approval, ownership, private storage, locke
   assert.equal((await rpc('create',{user:'33333333-3333-4333-8333-333333333333',body:{}})).status,403);
   assert.equal((await rpc('create',{user:'44444444-4444-4444-8444-444444444444',body:{}})).status,403,'email approval alone cannot bypass confirmation');
   assert.equal((await rpc('whoami',{user:uid})).body.authorized,true);
+  const emptySessions=await rpc('sessions',{user:uid});
+  assert.equal(emptySessions.status,200,'an approved lecturer can open the dashboard before creating any games');
+  assert.deepEqual(emptySessions.body.sessions,[]);
   await db.exec('set role anon');
   await db.query("select set_config('request.jwt.claim.sub','',false)");
   const anonymous=(await db.query("select public.jom_live('whoami') as result")).rows[0].result;
@@ -34,6 +37,13 @@ test('Postgres RPC enforces lecturer approval, ownership, private storage, locke
   await db.exec('reset role');
   const created=await rpc('create',{user:uid,body:{count:10,seconds:30,speedBonus:true}});
   assert.equal(created.status,201);const code=created.body.code,room='rooms/'+code;
+  await db.exec('set role authenticated');
+  const ownedSessions=await rpc('sessions',{user:uid});
+  assert.equal(ownedSessions.status,200,'the signed-in dashboard can list owned sessions');
+  assert.deepEqual(ownedSessions.body.sessions.map(s=>s.code),[code]);
+  assert.equal(ownedSessions.body.sessions[0].player_count,0);
+  assert.deepEqual((await rpc('sessions',{user:other})).body.sessions,[],'another lecturer cannot list these sessions');
+  await db.exec('reset role');
   assert.equal((await rpc(room+'/host',{user:other})).status,403);
   assert.equal((await rpc(room+'/control',{user:other,body:{action:'start',version:0}})).status,403);
   assert.equal((await rpc(room+'/results')).status,401);
