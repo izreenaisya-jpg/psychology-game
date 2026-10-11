@@ -27,7 +27,7 @@ export async function googleSignInUrl(){
  if(here.protocol!=='https:'||!here.pathname.endsWith('/host.html'))throw new Error('Open the secure lecturer dashboard to sign in.');
  const verifier=base64url(crypto.getRandomValues(new Uint8Array(32)));
  const challenge=base64url(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(verifier))));
- const route=/^#live-host(\/\d{6})?$/.test(here.hash)?here.hash:'#live-host';
+ const route=/^#(?:live-host(?:\/\d{6})?|live-bank)$/.test(here.hash)?here.hash:'#live-host';
  const pending=JSON.stringify({verifier,redirect,route,createdAt:Date.now()});
  try{sessionStorage.setItem(googleFlowKey(),pending);if(sessionStorage.getItem(googleFlowKey())!==pending)throw new Error();}catch{throw new Error('Allow browser storage in this tab to sign in with Google.');}
  const url=new URL(config().supabase.url+'/auth/v1/authorize');
@@ -43,7 +43,7 @@ export async function finishGoogleSignIn(){
  let pending;try{pending=JSON.parse(sessionStorage.getItem(googleFlowKey())||'null');sessionStorage.removeItem(googleFlowKey());}catch{/* Missing storage never authorizes a callback. */}
  // Remove callback credentials before network requests or rendering. Never accept fragment tokens.
  for(const name of ['code','error','error_code','error_description','sb_flow_id'])here.searchParams.delete(name);
- here.hash=/^#live-host(\/\d{6})?$/.test(pending?.route||'')?pending.route:'#live-host';
+ here.hash=/^#(?:live-host(?:\/\d{6})?|live-bank)$/.test(pending?.route||'')?pending.route:'#live-host';
  history.replaceState(null,'',here.href);
  if(failure)throw new Error(failure==='access_denied'?'Google sign-in was cancelled. You can try again.':'Google sign-in could not finish. Please try again.');
  if(implicit)throw new Error('Your email may now be confirmed. Sign in again to open your dashboard.');
@@ -65,7 +65,7 @@ export async function liveRequest(path,{body,token,signal}={}){
  const method=body?'POST':'GET';let url,headers,payload;
  if(usesSupabase()){
   if(!supabaseReady())throw new Error('The live classroom is being activated. Solo practice and revision papers are available.');
-  const hostPath=['whoami','sessions','create'].includes(path)||/^rooms\/\d{6}\/(host|control|results)$/.test(path);
+  const hostPath=['whoami','sessions','create','questions','questions/save'].includes(path)||/^rooms\/\d{6}\/(host|control|results|remove|restore)$/.test(path);
   const jwt=hostPath?await lecturerToken():null;
   url=config().supabase.url+'/rest/v1/rpc/jom_live';
   headers={apikey:config().supabase.publishableKey,'Content-Type':'application/json',...(jwt?{Authorization:'Bearer '+jwt}:{})};

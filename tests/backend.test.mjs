@@ -17,6 +17,7 @@ test('Supabase transport separates student tokens from lecturer JWTs and expires
  const student=calls.at(-1);assert.equal(student.opts.headers.apikey,'sb_publishable_test');assert.equal(student.opts.headers.Authorization,undefined);assert.equal(JSON.parse(student.opts.body).p_player_token,'a'.repeat(64));assert.equal(student.opts.credentials,'omit');
  await signInLecturer('reen@example.test','not-a-real-password');
  await liveRequest('create',{body:{count:10}});
+ for(const path of ['questions','questions/save','rooms/123456/remove','rooms/123456/restore']){await liveRequest(path,{body:path==='questions'?undefined:{version:0}});assert.equal(calls.at(-1).opts.headers.Authorization,'Bearer verified-user-jwt');}
  const host=calls.at(-1);assert.equal(host.opts.headers.Authorization,'Bearer verified-user-jwt');assert.equal(JSON.parse(host.opts.body).p_player_token,null);
  await liveRequest('rooms/123456',{token:'a'.repeat(64)});assert.equal(calls.at(-1).opts.headers.Authorization,undefined,'public player requests do not inherit host identity');
  globalThis.fetch=async()=>Response.json({message:'JWT expired'},{status:401});
@@ -54,6 +55,7 @@ test('Google PKCE exchanges only a bound callback and removes credentials from t
   await liveRequest('sessions');assert.equal(calls.at(-1).opts.headers.Authorization,'Bearer google-user-jwt');
   await liveRequest('rooms/123456',{token:'a'.repeat(64)});assert.equal(calls.at(-1).opts.headers.Authorization,undefined);
   await signOutLecturer();assert.equal(storage.size,0);
+  location.href=host+'#live-bank';await googleSignInUrl();location.href=host+'?code=bank-code';await finishGoogleSignIn();assert.equal(location.href,host+'#live-bank');await signOutLecturer();
 
   location.href=host+'?code=unsolicited';const before=calls.length;
   await assert.rejects(finishGoogleSignIn(),/expired/);assert.equal(calls.length,before);assert.equal(location.href,host+'#live-host');

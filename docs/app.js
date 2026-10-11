@@ -1,8 +1,8 @@
-import {mountLive,unmountLive} from './live.mjs?v=5ae6ade0a11c';
-import {isStudentPage,studentRoute} from './audience.mjs?v=5ae6ade0a11c';
-import {deck,rounds} from './deck.mjs?v=5ae6ade0a11c';
-import {bank} from './bank.mjs?v=5ae6ade0a11c';
-import {newClass,newSolo,teamTotal,maxScore,soloScore,rankTeams,blankResponse,escapeHtml as esc,csvCell} from './engine.mjs?v=5ae6ade0a11c';
+import {mountLive,unmountLive} from './live.mjs?v=446523452e11';
+import {isStudentPage,studentRoute} from './audience.mjs?v=446523452e11';
+import {deck,rounds} from './deck.mjs?v=446523452e11';
+import {bank} from './bank.mjs?v=446523452e11';
+import {newClass,newSolo,teamTotal,maxScore,soloScore,rankTeams,blankResponse,escapeHtml as esc,csvCell} from './engine.mjs?v=446523452e11';
 
 const assetUrl=path=>new URL(path,import.meta.url).href;
 const main=document.querySelector('#main');

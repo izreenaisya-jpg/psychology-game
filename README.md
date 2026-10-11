@@ -15,6 +15,8 @@ The main GitHub webpage provides Join game, Practice and Revision kit, plus a **
 
 **Deployment status:** the game schema, 100 revision questions and teacher email approval are deployed to `general`. Both GitHub pages use its public URL and publishable key. Google OAuth uses a PKCE callback on `host.html`; public Auth settings now report Google enabled, and the lecturer has completed login and returned to GitHub. There is no separate password or manual signup step. An ambiguous room alias in the dashboard's sessions query caused an error immediately after login; a deployed migration fixes that query while preserving authorization and room ownership. Regression tests cover empty, populated and other-lecturer session lists. Hosted SQL QA using the approved lecturer identity passed dashboard loading, PIN creation, player join, answer privacy, reveal, results and finish in a rolled-back transaction. Existing email/password login remains available as a collapsed fallback. Earlier hosted SQL gameplay QA passed for 30 players; public REST authorization and deployed student join/error/route guards also passed. A complete game in the published browser remains to be verified after the lecturer refreshes the dashboard. Historical Site/D1 records remain on the original service and have not been imported into Supabase.
 
+The live pool now uses 90 enabled questions sampled randomly for every new game. The lecturer dashboard includes a private question editor and recoverable session removal; hosted SQL QA for those features passed with all fixtures rolled back. Automated tests cover both interfaces and authorization. Signed-in browser bank editing/removal and full cross-device gameplay have not been verified in this environment.
+
 See [Supabase deployment instructions](supabase/README.md). Public connection settings live in `config/pages.json`; the build refuses incomplete Supabase settings. `host.html` has its own configuration and route handling. Signup or a public URL alone does not grant host privileges.
 
 ## Play live
@@ -23,7 +25,11 @@ See [Supabase deployment instructions](supabase/README.md). Public connection se
 2. Project the lobby. Up to 60 students open **Join game**, enter its six-digit PIN and choose a display name. The host can copy the direct join link.
 3. Start once everyone has joined. All phones receive the same question. A tap submits and locks the answer. The server enforces the question, deadline and one answer per player.
 4. **Reveal & discuss** shows the answer, response distribution and leaderboard. Invite oral explanations, then open the next question. Correct choice = 1,000 points; an optional speed bonus adds up to 200.
-5. Download all choices and scores as CSV. **My sessions** retains the lecturer’s latest 30 sessions and their records.
+5. Download all choices and scores as CSV. **My sessions** shows the latest 30 active sessions. **Remove** closes access to a PIN and moves it into **Removed sessions**; **Restore** recovers the session and its records. Restoring does not reset the original deadline or eight-hour public expiry.
+
+New live games draw 10/15/20 enabled questions randomly, without replacement, from the Chapters 4–6 bank. There is no fixed opening sequence; independent games can still share individual questions. Existing sessions keep their frozen decks. The initial live pool contains 90 active revision questions; the former ten core questions are retained inactive for lecturer review.
+
+Open **Question bank** in the lecturer navigation to search, add, edit or enable/disable MCQs. Each question has four distinct choices, one correct answer, an explanation and optional discussion/AI claim. Chapter metadata supports 4, 5, 6 or mixed 4–6. Existing questions start with mixed metadata until the lecturer classifies them. This private Supabase bank is editable only through approved lecturer RPCs; student views cannot manage it. Edits have version checks to prevent stale tabs overwriting newer changes.
 
 Synchronization uses HTTP polling every two seconds. A server deadline closes answers even if a phone’s timer is inaccurate. Allow a reliable internet connection and short delivery delays. Joining closes at start; players can resume in the same browser using their saved token. Session join/play links expire after eight hours; owner results remain available.
 
